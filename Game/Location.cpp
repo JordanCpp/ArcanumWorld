@@ -1,7 +1,8 @@
 #include "Location.h"
 
-Location::Location(ResourceManager * Source, const std::string & Name):
+Location::Location(ResourceManager * Source, ObjectManager* SourceObjectManager, const std::string & Name):
     manager(Source),
+    objects(SourceObjectManager),
     reader(manager->GetLocation(Name)),
     size(Point(0, 0))
 {
@@ -119,10 +120,8 @@ void Location::ReadTile()
         {
             if (reader.Name() == "Proto")
             {
-                Tile tile;
-                tile.Init(manager->GetXmlTile(reader.Value()), manager);
-
-                floor.push_back(tile);
+                Tile * obj = objects->GetTile(reader.Value());
+                floor.push_back(obj);
             }
         }
 
@@ -172,6 +171,6 @@ void Location::DrawTiles(Point Start)
 
         Point Pt = CartesianToIsometric(Point(x, y));
 
-        floor[k].Draw(Point(Pt.PosX() + Start.PosX(), Pt.PosY() + Start.PosY()));
+        floor[k]->Draw(Point(Pt.PosX() + Start.PosX(), Pt.PosY() + Start.PosY()));
     }
 }

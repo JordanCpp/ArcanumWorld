@@ -6,11 +6,12 @@
 #include "../Managers/ResourceManager.h"
 #include "../Common/XmlReader.hpp"
 #include "Critter.h"
+#include "../Managers/ObjectManager.h"
 
 class Location
 {
 public:
-    Location(ResourceManager * Source, const std::string & Name);
+    Location(ResourceManager * Source, ObjectManager * SourceObjectManager, const std::string & Name);
     ~Location();
     size_t Width();
     size_t Height();
@@ -29,7 +30,8 @@ private:
     void ReadCritters();
     void ReadCritter();
     ResourceManager * manager;
-    std::vector<Tile> floor;
+    ObjectManager* objects;
+    std::vector<Tile*> floor;
     std::vector<Critter*> critters;
     XmlReader reader;
     Point size;

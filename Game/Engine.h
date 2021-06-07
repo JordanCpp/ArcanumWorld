@@ -10,16 +10,18 @@
 class Engine
 {
 public:
-    Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource);
+    Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource, ObjectManager* Objects);
     ~Engine();
     void Run();
     Canvas * GetCanvas();
     Settings * GetSettings();
     ResourceManager * GetManager();
+    ObjectManager* GetObjects();
 private:
     Settings * setting;
     Canvas * canvas;
     ResourceManager * manager;
+    ObjectManager* objects;
     State state;
     XmlReader reader;
 };

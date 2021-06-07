@@ -1,10 +1,11 @@
 #include "Engine.h"
 #include "../UI/MainMenu.h"
 
-Engine::Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource):
+Engine::Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource, ObjectManager * Objects):
     setting(SourceSettings),
     canvas(CanvasSource),
     manager(ManagerSource),
+    objects(Objects),
     reader("", XmlReader::FromString)
 {
 }
@@ -17,7 +18,7 @@ void Engine::Run()
 {
     SDL_Event report;
 
-    Location location(GetManager(), "test.xml");
+    Location location(GetManager(), GetObjects(), "test.xml");
 
     size_t x      = GetSettings()->WindowSize().PosX() / 2;
     size_t y      = GetSettings()->WindowSize().PosY() / 2;
@@ -74,4 +75,9 @@ Settings * Engine::GetSettings()
 ResourceManager * Engine::GetManager()
 {
     return manager;
+}
+
+ObjectManager* Engine::GetObjects()
+{
+    return objects;
 }

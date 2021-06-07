@@ -4,18 +4,18 @@
 #include <vector>
 #include "../Game/Critter.h"
 #include "../Game/Tile.h"
+#include "../Allocators/LinearAllocator.h"
 
 class ObjectManager
 {
 public:
-	ObjectManager(ResourceManager* SourceManager);
+	ObjectManager(ResourceManager* SourceManager, size_t Bytes);
 	Critter* GetCritter(const std::string& Name);
-	Tile* GetTile();
+	Tile* GetTile(const std::string& Name);
 private:
 	XmlReader reader;
 	ResourceManager* manager;
-	std::vector<Critter> critters;
-	std::vector<Tile> tiles;
+	LinearAllocator allocator;
 };
 
 #endif

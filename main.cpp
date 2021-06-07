@@ -3,6 +3,7 @@
 #include "Graphics/Image.h"
 #include "Game/Engine.h"
 #include "Common/XmlWriter.hpp"
+#include "Managers/ObjectManager.h"
 
 void CreateLocation(size_t size)
 {
@@ -36,8 +37,9 @@ void EngineInit()
     Settings settings(Point(1024, 700), 30, "Files\\");
     Canvas screen(settings.WindowSize(), settings.Fps());
     ResourceManager manager(&screen, settings.Path());
+    ObjectManager objects(&manager, LinearAllocator::Mb * 4);
 
-    Engine engine(&settings, &screen, &manager);
+    Engine engine(&settings, &screen, &manager, &objects);
     engine.Run();
 }
 
@@ -46,7 +48,7 @@ int main(int argc, char**argv)
     std::cout << argc << '\n';
     std::cout << argv[0] << '\n';
 
-    //CreateLocation(10);
+    //CreateLocation(100);
     EngineInit();
 
     //TestCode();

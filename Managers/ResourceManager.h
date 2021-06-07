@@ -1,5 +1,5 @@
-#ifndef RESOURCEMANAGER_H
-#define RESOURCEMANAGER_H
+#ifndef _ResourceManager_h_
+#define _ResourceManager_h_
 
 #include <unordered_map>
 #include <string>
@@ -33,4 +33,4 @@ private:
     XmlReader reader;
 };
 
-#endif // RESOURCEMANAGER_H
+#endif // _ResourceManager_h_

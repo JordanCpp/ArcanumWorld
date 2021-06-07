@@ -1,30 +1,22 @@
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager(ResourceManager* SourceManager):
+ObjectManager::ObjectManager(ResourceManager* SourceManager, size_t Bytes):
 	reader("", XmlReader::FromString),
-	manager(SourceManager)
+	manager(SourceManager),
+	allocator(Bytes)
 {
-	critters.reserve(512);
 }
 
 Critter* ObjectManager::GetCritter(const std::string& Name)
 {
-	Critter object(nullptr, manager);
+	Critter* object = new(allocator.Alloc(sizeof(Critter))) Critter(manager->GetXmlTile(Name), manager);
 
-	critters.push_back(object);
-
-	size_t i = critters.size();
-
-	return &critters[i];
+	return object;
 }
 
-Tile* ObjectManager::GetTile()
+Tile* ObjectManager::GetTile(const std::string& Name)
 {
-	Tile object;
+	Tile * object = new(allocator.Alloc(sizeof(Tile))) Tile(manager->GetXmlTile(Name), manager);
 
-	tiles.push_back(object);
-
-	size_t i = tiles.size();
-
-	return &tiles[i];
+	return object;
 }

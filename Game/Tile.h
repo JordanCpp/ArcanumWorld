@@ -5,6 +5,8 @@
 #include "../Managers/ResourceManager.h"
 #include "Critter.h"
 
+class ResourceManager;
+
 class Tile
 {
 public:
@@ -14,9 +16,8 @@ public:
         Height = 40
     };
 
-    Tile();
+    Tile(XmlReader* Reader, ResourceManager* SourceManager);
     ~Tile();
-    void Init(XmlReader * Reader, ResourceManager * SourceManager);
     void Draw(Point pos);
 
 private:

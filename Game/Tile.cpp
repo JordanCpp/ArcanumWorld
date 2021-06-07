@@ -1,15 +1,7 @@
 #include "Tile.h"
 
-Tile::Tile():
+Tile::Tile(XmlReader* Reader, ResourceManager* SourceManager):
     body(nullptr)
-{
-}
-
-Tile::~Tile()
-{
-}
-
-void Tile::Init(XmlReader * Reader, ResourceManager * SourceManager)
 {
     Reader->NextOpening("Tile");
 
@@ -17,6 +9,10 @@ void Tile::Init(XmlReader * Reader, ResourceManager * SourceManager)
     body = SourceManager->GetTile(Reader->Value());
 
     Reader->NextClosing("Tile");
+}
+
+Tile::~Tile()
+{
 }
 
 void Tile::Draw(Point pos)
