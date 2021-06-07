@@ -10,6 +10,9 @@ public:
     ~Script();
     Engine * GetEngine();
 
+    virtual void MapEnter() = 0;
+    virtual void MapExit() = 0;
+    virtual void MapUpdate() = 0;
 private:
     Engine * engine;
 };

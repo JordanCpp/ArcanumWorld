@@ -2,8 +2,6 @@
 #define _Objects_Tile_h_
 
 #include "../Graphics/Image.h"
-#include "../Common/XmlFile.hpp"
-#include "../Common/XmlReader.hpp"
 #include "ResourceManager.h"
 
 class Tile

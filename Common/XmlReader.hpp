@@ -29,6 +29,7 @@ public:
     void CloseFile();
     const std::string & Name();
     const std::string & Value();
+    int ValueInt();
     char NextChar();
     bool Next();
     bool IsOpening(const std::string & name);

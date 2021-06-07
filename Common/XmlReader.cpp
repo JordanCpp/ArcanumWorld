@@ -80,6 +80,11 @@ const std::string & XmlReader::Value()
     return xml_data;
 }
 
+int XmlReader::ValueInt()
+{
+    return std::atoi(xml_data.c_str());
+}
+
 bool XmlReader::Eof()
 {
     bool result = true;
