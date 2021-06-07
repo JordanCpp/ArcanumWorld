@@ -2,7 +2,7 @@
 #define CRITTER_H
 
 #include "../Game/Stats.h"
-#include "ResourceManager.h"
+#include "../Managers/ResourceManager.h"
 
 class Critter
 {

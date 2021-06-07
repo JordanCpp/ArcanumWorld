@@ -3,7 +3,7 @@
 
 #include "Settings.h"
 #include "../Graphics/Canvas.h"
-#include "ResourceManager.h"
+#include "../Managers/ResourceManager.h"
 #include "../Game/Location.h"
 #include "../Game/State.h"
 

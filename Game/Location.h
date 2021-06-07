@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Tile.h"
-#include "ResourceManager.h"
+#include "../Managers/ResourceManager.h"
 #include "../Common/XmlReader.hpp"
 #include "Critter.h"
 

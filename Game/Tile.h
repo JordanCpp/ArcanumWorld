@@ -2,7 +2,7 @@
 #define _Objects_Tile_h_
 
 #include "../Graphics/Image.h"
-#include "ResourceManager.h"
+#include "../Managers/ResourceManager.h"
 #include "Critter.h"
 
 class Tile
