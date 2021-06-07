@@ -3,3 +3,10 @@
 ################################################################################
 
 /Files
+/Debug
+/.vs
+/ArcanumWorld.vcxproj.user
+/ArcanumWorld.vcxproj.filters
+/ArcanumWorld.vcxproj
+/ArcanumWorld.sln
+/SDL2.dll
