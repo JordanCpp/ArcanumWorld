@@ -55,7 +55,7 @@ void Location::ReadLocation()
     reader.Next();
     reader.AssertOpening("Location");
 
-    while (reader.Next() && !reader.IsClosing("Location"))
+    while (reader.Next())
     {
         ReadInfo();
         ReadTiles();
@@ -127,6 +127,36 @@ void Location::ReadTile()
         }
 
         reader.AssertClosing("Tile");
+    }
+}
+
+void Location::ReadCritters()
+{
+    if (reader.IsOpening("Critters"))
+    {
+        while (reader.Next() && !reader.IsClosing("Critters"))
+        {
+            ReadCritter();
+        }
+
+        reader.AssertClosing("Critters");
+    }
+}
+
+void Location::ReadCritter()
+{
+    if (reader.IsOpening("Critter"))
+    {
+        while (reader.NextNode())
+        {
+            if (reader.Name() == "Proto")
+            {
+                Critter * object = new Critter(manager->GetXmlCritter(reader.Value()), manager);
+                critters.push_back(object);
+            }
+        }
+
+        reader.AssertClosing("Critter");
     }
 }
 

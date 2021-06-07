@@ -3,6 +3,7 @@
 
 #include "../Graphics/Image.h"
 #include "ResourceManager.h"
+#include "Critter.h"
 
 class Tile
 {
@@ -19,8 +20,8 @@ public:
     void Draw(Point pos);
 
 private:
-    Image* t[6];
     Image * body;
+    Critter* critter;
 };
 
 #endif // TILE_H

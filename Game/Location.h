@@ -5,6 +5,7 @@
 #include "Tile.h"
 #include "ResourceManager.h"
 #include "../Common/XmlReader.hpp"
+#include "Critter.h"
 
 class Location
 {
@@ -25,9 +26,11 @@ private:
     void ReadTiles();
     void ReadFloor();
     void ReadTile();
-
+    void ReadCritters();
+    void ReadCritter();
     ResourceManager * manager;
     std::vector<Tile> floor;
+    std::vector<Critter*> critters;
     XmlReader reader;
     Point size;
 };
