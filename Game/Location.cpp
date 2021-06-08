@@ -11,6 +11,7 @@ Location::Location(ResourceManager * Source, ObjectManager* SourceObjectManager,
 
 Location::~Location()
 {
+    objects->Clear();
 }
 
 size_t Location::Width()

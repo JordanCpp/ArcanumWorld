@@ -14,6 +14,11 @@ LinearAllocator::~LinearAllocator()
 	delete[] data;
 }
 
+void LinearAllocator::Reset()
+{
+	pos = 0;
+}
+
 void* LinearAllocator::Alloc(size_t Count)
 {
 	assert(pos + Count < total);

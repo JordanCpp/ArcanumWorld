@@ -10,6 +10,7 @@ class ObjectManager
 {
 public:
 	ObjectManager(ResourceManager* SourceManager, size_t Bytes);
+	void Clear();
 	Critter* GetCritter(const std::string& Name);
 	Tile* GetTile(const std::string& Name);
 private:

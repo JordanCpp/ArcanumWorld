@@ -7,6 +7,11 @@ ObjectManager::ObjectManager(ResourceManager* SourceManager, size_t Bytes):
 {
 }
 
+void ObjectManager::Clear()
+{
+	allocator.Reset();
+}
+
 Critter* ObjectManager::GetCritter(const std::string& Name)
 {
 	Critter* object = new(allocator.Alloc(sizeof(Critter))) Critter(manager->GetXmlTile(Name), manager);

@@ -7,7 +7,7 @@
 class Settings
 {
 public:
-    Settings(Point Size, size_t Fps, const std::string & Path);
+    Settings(const std::string & Name);
     ~Settings();
     const std::string & Path();
     size_t Fps();

@@ -15,6 +15,7 @@ public:
 
 	LinearAllocator(size_t Count);
 	~LinearAllocator();
+	void Reset();
 	void* Alloc(size_t Count);
 	size_t FreeSize();
 	size_t UsedSize();

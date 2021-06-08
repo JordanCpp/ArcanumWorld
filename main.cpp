@@ -34,7 +34,7 @@ void CreateLocation(size_t size)
 
 void EngineInit()
 {
-    Settings settings(Point(1024, 700), 30, "Files\\");
+    Settings settings("Config.xml");
     Canvas screen(settings.WindowSize(), settings.Fps());
     ResourceManager manager(&screen, settings.Path());
     ObjectManager objects(&manager, LinearAllocator::Mb * 4);
