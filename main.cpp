@@ -33,29 +33,13 @@ void CreateLocation(size_t size)
     f.CloseTag("Location");
 }
 
-void EngineInit()
-{
-    LinearAllocator allocator(LinearAllocator::Mb * 4);
-
-    Settings settings("Config.xml");
-    Canvas screen(settings.WindowSize(), settings.Fps());
-    XmlManager xml_manager(settings.Path());
-    ResourceManager manager(&screen, settings.Path());
-    ObjectManager objects(&manager, &xml_manager, &allocator);
-
-    Engine engine(&settings, &screen, &manager, &objects, &xml_manager);
-    engine.Run();
-}
-
 int main(int argc, char**argv)
 {
     std::cout << argc << '\n';
     std::cout << argv[0] << '\n';
 
-    //CreateLocation(100);
-    EngineInit();
-
-    //TestCode();
+    Engine engine("Config.xml");
+    engine.Run();
 
     return 0;
 }

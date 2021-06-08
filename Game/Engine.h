@@ -11,7 +11,7 @@
 class Engine
 {
 public:
-    Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource, ObjectManager* Objects, XmlManager* XmlManagerSource);
+    Engine(const std::string& Name);
     ~Engine();
     void Run();
     Canvas * GetCanvas();
@@ -20,13 +20,13 @@ public:
     ObjectManager* GetObjects();
     XmlManager* GetXmlManager();
 private:
-    Settings * setting;
-    Canvas * canvas;
-    ResourceManager * manager;
-    ObjectManager* objects;
+    Settings settings;
+    LinearAllocator allocator;
+    Canvas canvas;
     State state;
-    XmlReader reader;
-    XmlManager* xml_manager;
+    XmlManager xml_manager;
+    ResourceManager manager;
+    ObjectManager objects;
 };
 
 #endif // ENGINE_H

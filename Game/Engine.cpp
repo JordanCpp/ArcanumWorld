@@ -1,13 +1,13 @@
 #include "Engine.h"
 #include "../UI/MainMenu.h"
 
-Engine::Engine(Settings * SourceSettings, Canvas * CanvasSource, ResourceManager * ManagerSource, ObjectManager * Objects, XmlManager * XmlManagerSource):
-    setting(SourceSettings),
-    canvas(CanvasSource),
-    manager(ManagerSource),
-    objects(Objects),
-    reader("", XmlReader::FromString),
-    xml_manager(XmlManagerSource)
+Engine::Engine(const std::string& Name):
+    settings(Name),
+    allocator(LinearAllocator::Mb * 4),
+    canvas(settings.WindowSize(), settings.Fps()),
+    xml_manager(settings.Path()),
+    manager(&canvas, settings.Path()),
+    objects(&manager, &xml_manager, &allocator)
 {
 }
 
@@ -65,25 +65,25 @@ void Engine::Run()
 
 Canvas * Engine::GetCanvas()
 {
-    return canvas;
+    return &canvas;
 }
 
 Settings * Engine::GetSettings()
 {
-    return setting;
+    return &settings;
 }
 
 ResourceManager * Engine::GetManager()
 {
-    return manager;
+    return &manager;
 }
 
 ObjectManager* Engine::GetObjects()
 {
-    return objects;
+    return &objects;
 }
 
 XmlManager* Engine::GetXmlManager()
 {
-    return xml_manager;
+    return &xml_manager;
 }
