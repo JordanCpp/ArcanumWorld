@@ -1,8 +1,9 @@
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager(ResourceManager* SourceManager, size_t Bytes):
+ObjectManager::ObjectManager(ResourceManager* SourceManager, XmlManager* XmlManagerSource, size_t Bytes):
 	reader("", XmlReader::FromString),
 	manager(SourceManager),
+	xml_manager(XmlManagerSource),
 	allocator(Bytes)
 {
 }
@@ -14,14 +15,14 @@ void ObjectManager::Clear()
 
 Critter* ObjectManager::GetCritter(const std::string& Name)
 {
-	Critter* object = new(allocator.Alloc(sizeof(Critter))) Critter(manager->GetXmlTile(Name), manager);
+	Critter* object = new(allocator.Alloc(sizeof(Critter))) Critter(xml_manager->GetXmlTile(Name), manager);
 
 	return object;
 }
 
 Tile* ObjectManager::GetTile(const std::string& Name)
 {
-	Tile * object = new(allocator.Alloc(sizeof(Tile))) Tile(manager->GetXmlTile(Name), manager);
+	Tile * object = new(allocator.Alloc(sizeof(Tile))) Tile(xml_manager->GetXmlTile(Name), manager);
 
 	return object;
 }

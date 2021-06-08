@@ -1,9 +1,10 @@
 #include "Location.h"
 
-Location::Location(ResourceManager * Source, ObjectManager* SourceObjectManager, const std::string & Name):
+Location::Location(ResourceManager * Source, ObjectManager* SourceObjectManager, XmlManager* XmlManagerSource, const std::string & Name):
     manager(Source),
     objects(SourceObjectManager),
-    reader(manager->GetLocation(Name)),
+    xml_manager(XmlManagerSource),
+    reader(xml_manager->GetLocation(Name)),
     size(Point(0, 0))
 {
     ReadLocation();
@@ -151,7 +152,7 @@ void Location::ReadCritter()
         {
             if (reader.Name() == "Proto")
             {
-                Critter * object = new Critter(manager->GetXmlCritter(reader.Value()), manager);
+                Critter * object = new Critter(xml_manager->GetXmlCritter(reader.Value()), manager);
                 critters.push_back(object);
             }
         }

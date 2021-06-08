@@ -4,6 +4,7 @@
 #include "Game/Engine.h"
 #include "Common/XmlWriter.hpp"
 #include "Managers/ObjectManager.h"
+#include "Managers/XmlManager.h"
 
 void CreateLocation(size_t size)
 {
@@ -36,10 +37,11 @@ void EngineInit()
 {
     Settings settings("Config.xml");
     Canvas screen(settings.WindowSize(), settings.Fps());
+    XmlManager xml_manager(settings.Path());
     ResourceManager manager(&screen, settings.Path());
-    ObjectManager objects(&manager, LinearAllocator::Mb * 4);
+    ObjectManager objects(&manager, &xml_manager, LinearAllocator::Mb * 4);
 
-    Engine engine(&settings, &screen, &manager, &objects);
+    Engine engine(&settings, &screen, &manager, &objects, &xml_manager);
     engine.Run();
 }
 
