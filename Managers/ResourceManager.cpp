@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "../Common/Utils.h"
 
 ResourceManager::ResourceManager(Canvas * Source, const std::string & Path):
     canvas(Source),
@@ -20,30 +21,9 @@ ResourceManager::~ResourceManager()
     }
 }
 
-void ResourceManager::Normalize(std::string & Dest)
-{
-    for (size_t i = 0; i < Dest.size(); i++)
-    {
-        if (Dest[i] == '\\')
-        {
-            Dest[i] = '\\';
-        }
-    }
-}
-
-void ResourceManager::Concatenate(std::string & Dest, const std::string & DirName, const std::string & FileName)
-{
-    Dest.clear();
-    Dest.append(short_path);
-    Dest.append(DirName);
-    Dest.append(FileName);
-
-    Normalize(Dest);
-}
-
 Image * ResourceManager::GetImage(const std::string & DirName, const std::string & FileName)
 {
-    Concatenate(full_path, DirName, FileName);
+   Utils::ConcatPath(full_path, short_path, DirName, FileName);
 
     auto i =  images.find(full_path);
 
@@ -64,7 +44,7 @@ Image * ResourceManager::GetImage(const std::string & DirName, const std::string
 
 XmlFile * ResourceManager::GetXmlFile(const std::string & DirName, const std::string & FileName)
 {
-    Concatenate(full_path, DirName, FileName);
+    Utils::ConcatPath(full_path, short_path, DirName, FileName);
 
     auto i =  xml_files.find(full_path);
 
@@ -85,7 +65,7 @@ XmlFile * ResourceManager::GetXmlFile(const std::string & DirName, const std::st
 
 XmlReader * ResourceManager::GetXml(const std::string & DirName, const std::string & FileName)
 {
-    Concatenate(full_path, DirName, FileName);
+    Utils::ConcatPath(full_path, short_path, DirName, FileName);
 
     auto i =  xml_files.find(full_path);
 
@@ -133,7 +113,7 @@ Image * ResourceManager::GetTile(const std::string & Name)
 
 const std::string & ResourceManager::GetLocation(const std::string & Source)
 {
-    Concatenate(full_path, "Locations\\", Source);
+    Utils::ConcatPath(full_path, short_path, "Locations\\", Source);
 
     return full_path;
 }

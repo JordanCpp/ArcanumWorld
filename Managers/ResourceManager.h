@@ -13,8 +13,6 @@ class ResourceManager
 public:
     ResourceManager(Canvas * Source, const std::string & Path);
     ~ResourceManager();
-    void Normalize(std::string & Dest);
-    void Concatenate(std::string & Dest, const std::string & DirName, const std::string & FileName);
     Image * GetImage(const std::string & DirName, const std::string & FileName);
     XmlFile * GetXmlFile(const std::string & DirName, const std::string & FileName);
     XmlReader * GetXml(const std::string & DirName, const std::string & FileName);
