@@ -36,47 +36,23 @@ XmlFile* XmlManager::GetXmlFile(const std::string& DirName, const std::string& F
     return p;
 }
 
-XmlReader* XmlManager::GetXml(const std::string& DirName, const std::string& FileName)
+XmlReader* XmlManager::GetReader(const std::string& DirName, const std::string& FileName)
 {
-    Utils::ConcatPath(full_path, short_path, DirName, FileName);
-
-    auto i = xml_files.find(full_path);
-
-    XmlFile* p = nullptr;
-
-    if (i == xml_files.end())
-    {
-        p = new XmlFile(full_path);
-        xml_files.emplace(full_path, p);
-    }
-    else
-    {
-        p = i->second;
-    }
+    XmlFile* p = GetXmlFile(DirName, FileName);
 
     reader.Reset(p->Content(), XmlReader::FromString);
 
     return &reader;
 }
 
-XmlReader* XmlManager::GetXmlTile(const std::string& Name)
+XmlReader* XmlManager::GetTile(const std::string& Name)
 {
-    return GetXml("Prototypes\\Tiles\\", Name);
+    return GetReader("Prototypes\\Tiles\\", Name);
 }
 
-XmlReader* XmlManager::GetXmlCritter(const std::string& Name)
+XmlReader* XmlManager::GetCritter(const std::string& Name)
 {
-    return GetXml("Prototypes\\Critters\\", Name);
-}
-
-XmlFile* XmlManager::GetProtoTile(const std::string& Name)
-{
-    return GetXmlFile("Prototypes\\Tiles\\", Name);
-}
-
-XmlFile* XmlManager::GetProtoScenery(const std::string& Name)
-{
-    return GetXmlFile("Prototypes\\Scenery\\", Name);
+    return GetReader("Prototypes\\Critters\\", Name);
 }
 
 const std::string& XmlManager::GetLocation(const std::string& Source)

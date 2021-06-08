@@ -25,6 +25,13 @@ size_t Location::Height()
     return size.PosY();
 }
 
+void Location::InitScripts()
+{
+    for (size_t i = 0; i < critters.size(); i++)
+    {
+    }
+}
+
 Point Location::IsometricToCartesian(Point Pt)
 {
     size_t x = (2 * Pt.PosY() + Pt.PosX()) / 2;
@@ -152,7 +159,7 @@ void Location::ReadCritter()
         {
             if (reader.Name() == "Proto")
             {
-                Critter * object = new Critter(xml_manager->GetXmlCritter(reader.Value()), manager);
+                Critter * object = new Critter(xml_manager->GetCritter(reader.Value()), manager);
                 critters.push_back(object);
             }
         }

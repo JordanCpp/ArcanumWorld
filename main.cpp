@@ -35,11 +35,13 @@ void CreateLocation(size_t size)
 
 void EngineInit()
 {
+    LinearAllocator allocator(LinearAllocator::Mb * 4);
+
     Settings settings("Config.xml");
     Canvas screen(settings.WindowSize(), settings.Fps());
     XmlManager xml_manager(settings.Path());
     ResourceManager manager(&screen, settings.Path());
-    ObjectManager objects(&manager, &xml_manager, LinearAllocator::Mb * 4);
+    ObjectManager objects(&manager, &xml_manager, &allocator);
 
     Engine engine(&settings, &screen, &manager, &objects, &xml_manager);
     engine.Run();

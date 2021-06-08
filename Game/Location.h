@@ -19,6 +19,7 @@ public:
     void DrawTiles(Point Start);
 
 private:
+    void InitScripts();
     Point IsometricToCartesian(Point Pt);
     Point CartesianToIsometric(Point Pt);
     size_t PointToIndex(Point Pt);

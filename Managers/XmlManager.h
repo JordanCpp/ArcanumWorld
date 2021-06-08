@@ -11,11 +11,9 @@ public:
     XmlManager(const std::string& Path);
     ~XmlManager();
     XmlFile* GetXmlFile(const std::string& DirName, const std::string& FileName);
-    XmlReader* GetXml(const std::string& DirName, const std::string& FileName);
-    XmlReader* GetXmlTile(const std::string& Name);
-    XmlReader* GetXmlCritter(const std::string& Name);
-    XmlFile* GetProtoTile(const std::string& Name);
-    XmlFile* GetProtoScenery(const std::string& Name);
+    XmlReader* GetReader(const std::string& DirName, const std::string& FileName);
+    XmlReader* GetTile(const std::string& Name);
+    XmlReader* GetCritter(const std::string& Name);
     const std::string& GetLocation(const std::string& Source);
 private:
 	std::string short_path;

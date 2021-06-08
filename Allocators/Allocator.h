@@ -14,6 +14,7 @@ public:
 	};
 
 	virtual void* Alloc(size_t Count) = 0;
+	virtual void Reset() = 0;
 	virtual size_t FreeSize() = 0;
 	virtual size_t UsedSize() = 0;
 private:

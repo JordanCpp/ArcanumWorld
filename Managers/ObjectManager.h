@@ -10,7 +10,7 @@
 class ObjectManager
 {
 public:
-	ObjectManager(ResourceManager* SourceManager, XmlManager* XmlManagerSource, size_t Bytes);
+	ObjectManager(ResourceManager* SourceManager, XmlManager* XmlManagerSource, Allocator * AllocatorSource);
 	void Clear();
 	Critter* GetCritter(const std::string& Name);
 	Tile* GetTile(const std::string& Name);
@@ -18,7 +18,7 @@ private:
 	XmlReader reader;
 	ResourceManager* manager;
 	XmlManager* xml_manager;
-	LinearAllocator allocator;
+	Allocator * allocator;
 };
 
 #endif

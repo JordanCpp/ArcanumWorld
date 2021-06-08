@@ -7,9 +7,22 @@ Script::Script(Engine * EngineSource):
 
 Script::~Script()
 {
+    engine = nullptr;
 }
 
 Engine * Script::GetEngine()
 {
     return engine;
+}
+
+void Script::MapEnter()
+{
+}
+
+void Script::MapExit()
+{
+}
+
+void Script::MapUpdate()
+{
 }

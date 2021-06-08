@@ -6,6 +6,7 @@
 class Tester: public Script
 {
 public:
+    Tester(Engine* EngineSource);
     void MapEnter();
     void MapExit();
     void MapUpdate();
