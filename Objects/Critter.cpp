@@ -1,8 +1,14 @@
 #include "Critter.h"
 
-Critter::Critter(XmlReader* Reader, ResourceManager* Manager)
+Critter::Critter(XmlReader* Reader):
+    script(nullptr)
 {
     LoadStats(Reader);
+}
+
+void Critter::Init(ScriptCritter* ScriptCritterSource)
+{
+    script = ScriptCritterSource;
 }
 
 Critter::~Critter()
@@ -11,12 +17,12 @@ Critter::~Critter()
 
 int Critter::Base(size_t Index)
 {
-    return base.Get(Index);
+    return base_stats.Get(Index);
 }
 
 int Critter::Bonus(size_t Index)
 {
-    return bonus.Get(Index);
+    return bonus_stats.Get(Index);
 }
 
 int Critter::Stat(size_t Index)
@@ -40,7 +46,7 @@ int Critter::Stat(size_t Index)
 
 void Critter::Base(size_t Index, int Value)
 {
-    base.Set(Index, Value);
+    base_stats.Set(Index, Value);
 }
 
 void Critter::LoadStats(XmlReader* Reader)

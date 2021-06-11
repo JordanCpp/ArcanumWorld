@@ -1,9 +1,9 @@
 #include "XmlManager.h"
 #include "../Common/Utils.h"
 
-XmlManager::XmlManager(const std::string& Path) :
-    short_path(Path),
-    reader("", XmlReader::FromString)
+XmlManager::XmlManager(const std::string& Path):
+	IManager(Path),
+	reader("", XmlReader::FromString)
 {
 }
 
@@ -17,16 +17,14 @@ XmlManager::~XmlManager()
 
 XmlFile* XmlManager::GetXmlFile(const std::string& DirName, const std::string& FileName)
 {
-    Utils::ConcatPath(full_path, short_path, DirName, FileName);
-
-    auto i = xml_files.find(full_path);
+    auto i = xml_files.find(GetPath(DirName, FileName));
 
     XmlFile* p = nullptr;
 
     if (i == xml_files.end())
     {
-        p = new XmlFile(full_path);
-        xml_files.emplace(full_path, p);
+        p = new XmlFile(GetPath(DirName, FileName));
+        xml_files.emplace(GetPath(DirName, FileName), p);
     }
     else
     {
@@ -57,7 +55,5 @@ XmlReader* XmlManager::GetCritter(const std::string& Name)
 
 const std::string& XmlManager::GetLocation(const std::string& Source)
 {
-    Utils::ConcatPath(full_path, short_path, "Locations\\", Source);
-
-    return full_path;
+    return GetPath("Locations\\", Source);
 }

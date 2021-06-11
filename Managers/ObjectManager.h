@@ -1,24 +1,25 @@
 #ifndef _ObjectManager_h_
-#define _ObjectManager_h_
+#define _ObjectManager_h_ 
 
-#include <vector>
-#include "../Game/Critter.h"
-#include "../Game/Tile.h"
-#include "../Allocators/LinearAllocator.h"
 #include "XmlManager.h"
+#include "../Allocators/Allocator.h"
+#include "../Managers/ScriptManager.h"
+#include "../Objects/Tile.h"
+
+class ScriptManager;
 
 class ObjectManager
 {
 public:
-	ObjectManager(ResourceManager* SourceManager, XmlManager* XmlManagerSource, Allocator * AllocatorSource);
-	void Clear();
-	Critter* GetCritter(const std::string& Name);
-	Tile* GetTile(const std::string& Name);
+	ObjectManager(XmlManager* XmlManagerSource, Allocator* AllocatorSource, ScriptManager* ScriptManagerSource, ImageManager* ImageManagerSource);
+	Critter* GetCritter(const std::string& XmlName);
+	ScriptCritter* GetScriptCritter(const std::string Name);
+	Tile* GetTile(const std::string& XmlName);
 private:
-	XmlReader reader;
-	ResourceManager* manager;
 	XmlManager* xml_manager;
-	Allocator * allocator;
+	Allocator* allocator;
+	ScriptManager* script_manager;
+	ImageManager* image_manager;
 };
 
 #endif

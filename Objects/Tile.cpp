@@ -1,7 +1,9 @@
 #include "Tile.h"
 
-Tile::Tile(XmlReader* Reader, ResourceManager* SourceManager):
-    body(nullptr)
+Tile::Tile(XmlReader* Reader, ImageManager* SourceManager):
+    script(nullptr),
+    body(nullptr),
+    critter(nullptr)
 {
     Reader->NextOpening("Tile");
 
@@ -11,8 +13,9 @@ Tile::Tile(XmlReader* Reader, ResourceManager* SourceManager):
     Reader->NextClosing("Tile");
 }
 
-Tile::~Tile()
+void Tile::Init(Critter* CritterSource)
 {
+    critter = CritterSource;
 }
 
 void Tile::Draw(Point pos)

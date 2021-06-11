@@ -1,5 +1,5 @@
-#ifndef _Stat_h
-#define _Stat_h
+#ifndef _Stats_h
+#define _Stats_h
 
 #include <array>
 
@@ -16,6 +16,7 @@ public:
 		Willpower,
 		Perception,
 		Charisma,
+
 		Max
 	};
 

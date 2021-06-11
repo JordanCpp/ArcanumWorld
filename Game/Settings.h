@@ -1,5 +1,5 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef _Settings_h_
+#define _Settings_h_
 
 #include <string>
 #include "../Graphics/Point.h"
@@ -18,4 +18,4 @@ private:
     std::string path;
 };
 
-#endif // SETTINGS_H
+#endif

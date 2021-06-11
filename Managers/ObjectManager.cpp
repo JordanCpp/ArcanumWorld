@@ -1,28 +1,30 @@
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager(ResourceManager* SourceManager, XmlManager* XmlManagerSource, Allocator* AllocatorSource):
-	reader("", XmlReader::FromString),
-	manager(SourceManager),
+ObjectManager::ObjectManager(XmlManager* XmlManagerSource, Allocator* AllocatorSource, ScriptManager* ScriptManagerSource, ImageManager* ImageManagerSource):
 	xml_manager(XmlManagerSource),
-	allocator(AllocatorSource)
+	allocator(AllocatorSource),
+	script_manager(ScriptManagerSource),
+	image_manager(ImageManagerSource)
 {
 }
 
-void ObjectManager::Clear()
+Critter* ObjectManager::GetCritter(const std::string& XmlName)
 {
-	allocator->Reset();
+	Critter* critter = new (allocator->Alloc(sizeof(Critter))) Critter(xml_manager->GetCritter(XmlName));
+
+	return critter;
 }
 
-Critter* ObjectManager::GetCritter(const std::string& Name)
+ScriptCritter* ObjectManager::GetScriptCritter(const std::string Name)
 {
-	Critter* object = new(allocator->Alloc(sizeof(Critter))) Critter(xml_manager->GetTile(Name), manager);
+	ScriptCritter* script = script_manager->GetCritter(Name);
 
-	return object;
+	return script;
 }
 
-Tile* ObjectManager::GetTile(const std::string& Name)
+Tile* ObjectManager::GetTile(const std::string& XmlName)
 {
-	Tile * object = new(allocator->Alloc(sizeof(Tile))) Tile(xml_manager->GetTile(Name), manager);
+	Tile* tile = new (allocator->Alloc(sizeof(Tile))) Tile(xml_manager->GetTile(XmlName), image_manager);
 
-	return object;
+	return tile;
 }

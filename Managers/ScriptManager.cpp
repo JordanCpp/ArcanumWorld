@@ -1,27 +1,44 @@
 #include "ScriptManager.h"
-#include "../Scripts/Tester.h"
 
-ScriptManager::ScriptManager(Engine* EngineSource, Allocator* AllocatorSource) :
+ScriptManager::ScriptManager(Engine* EngineSource, Allocator* AllocatorSource):
 	engine(EngineSource),
 	allocator(AllocatorSource)
 {
 }
 
-Script* ScriptManager::GetScript(const std::string& Name)
+ScriptCritter* ScriptManager::NewCritter()
 {
-	Script* result = nullptr;
-
-	if (Name == "Tester")
-	{
-		result = new (NewScript()) Tester(engine);
-	}
-
-	return result;
+	return (ScriptCritter*)allocator->Alloc(sizeof(ScriptCritter));
 }
 
-Script* ScriptManager::NewScript()
+ScriptLocation* ScriptManager::NewLocation()
 {
-	Script * object = (Script*)allocator->Alloc(sizeof(Script));
+	return (ScriptLocation*)allocator->Alloc(sizeof(ScriptLocation));
+}
 
-	return object;
+ScriptTile* ScriptManager::NewTile()
+{
+	return (ScriptTile*)allocator->Alloc(sizeof(ScriptTile));
+}
+
+ScriptCritter* ScriptManager::GetCritter(const std::string& Name)
+{
+	ScriptCritter* result = nullptr;
+
+	if (Name == "TestCritter")
+	{
+
+	}
+
+	return new(NewCritter()) ScriptCritter(engine);
+}
+
+ScriptLocation* ScriptManager::GetLocation()
+{
+	return new(NewLocation()) ScriptLocation(engine);
+}
+
+ScriptTile* ScriptManager::GetTile()
+{
+	return new(NewTile()) ScriptTile(engine);
 }

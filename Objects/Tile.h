@@ -2,10 +2,12 @@
 #define _Objects_Tile_h_
 
 #include "../Graphics/Image.h"
-#include "../Managers/ResourceManager.h"
+#include "../Managers/ImageManager.h"
+#include "../Common/XmlReader.hpp"
 #include "Critter.h"
+#include "ScriptTile.h"
 
-class ResourceManager;
+class ScriptTile;
 
 class Tile
 {
@@ -16,13 +18,13 @@ public:
         Height = 40
     };
 
-    Tile(XmlReader* Reader, ResourceManager* SourceManager);
-    ~Tile();
+    Tile(XmlReader* Reader, ImageManager* SourceManager);
+    void Init(Critter* CritterSource);
     void Draw(Point pos);
-
 private:
+    ScriptTile* script;
     Image * body;
     Critter* critter;
 };
 
-#endif // TILE_H
+#endif

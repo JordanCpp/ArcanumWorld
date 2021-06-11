@@ -1,16 +1,26 @@
 #ifndef _ScriptManager_h_
-#define _ScriptManager_h_
+#define _ScriptManager_h_ 
 
+#include "../Objects/ScriptCritter.h"
+#include "../Objects/ScriptLocation.h"
+#include "../Objects/ScriptTile.h"
+#include "../Allocators/Allocator.h"
 #include <string>
-#include "../Game/Script.h"
+
+class Engine;
+class ScriptLocation;
 
 class ScriptManager
 {
 public:
 	ScriptManager(Engine* EngineSource, Allocator* AllocatorSource);
-	Script * GetScript(const std::string & Name);
+	ScriptCritter* NewCritter();
+	ScriptLocation* NewLocation();
+	ScriptTile* NewTile();
+	ScriptCritter* GetCritter(const std::string& Name);
+	ScriptLocation* GetLocation();
+	ScriptTile* GetTile();
 private:
-	Script* NewScript();
 	Engine* engine;
 	Allocator* allocator;
 };

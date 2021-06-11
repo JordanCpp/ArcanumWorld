@@ -1,44 +1,30 @@
-#include "Platform.h"
-#include <iostream>
-#include "Graphics/Image.h"
-#include "Game/Engine.h"
-#include "Common/XmlWriter.hpp"
-#include "Managers/ObjectManager.h"
+﻿#include "Managers/SpriteManager.h"
 #include "Managers/XmlManager.h"
+#include "Managers/ObjectManager.h"
+#include "Managers/ScriptManager.h"
+#include "Game/Engine.h"
+#include "Game/Settings.h"
+#include "Graphics/Canvas.h"
+#include "Allocators/LinearAllocator.h"
 
-void CreateLocation(size_t size)
-{
-    size_t max_tiles = size * size;
-
-    XmlWriter f("Files\\Locations\\test.xml");
-
-    f.OpenTag("Location");
-
-    f.OpenTag("Info");
-    f.Node("Size", std::to_string(size));
-    f.CloseTag("Info");
-
-    f.OpenTag("Tiles");
-    f.OpenTag("Floor");
-
-    for (size_t i = 0; i < max_tiles; i++)
-    {
-        f.OpenTag("Tile");
-        f.Node("Proto", "default.xml");
-        f.CloseTag("Tile");
-    }
-
-    f.CloseTag("Floor");
-    f.CloseTag("Tiles");
-    f.CloseTag("Location");
-}
-
-int main(int argc, char**argv)
+int main(int argc, char** argv)
 {
     std::cout << argc << '\n';
     std::cout << argv[0] << '\n';
 
-    Engine engine("Config.xml");
+    Engine engine;
+
+    Settings settings("Config.xml");
+    LinearAllocator allocator(LinearAllocator::Mb * 4);
+    Canvas screen(settings.WindowSize(), settings.Fps());
+    SpriteManager sprite_manager;
+    XmlManager xml_manager(settings.Path());
+    ScriptManager script_manager(&engine, &allocator);
+    ImageManager image_manager(&screen, settings.Path());
+    ObjectManager object_manager(&xml_manager, &allocator, &script_manager, &image_manager);
+    Location location(&object_manager);
+
+    engine.Init(&screen, &sprite_manager, &xml_manager, &object_manager, &script_manager, &location, &settings, &image_manager);
     engine.Run();
 
     return 0;
