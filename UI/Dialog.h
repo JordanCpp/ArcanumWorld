@@ -1,6 +1,5 @@
-#ifndef DIALOG_H
-#define DIALOG_H
-
+#ifndef _UI_Dialog_h_
+#define _UI_Dialog_h_
 
 class Dialog
 {
@@ -11,4 +10,4 @@ public:
 private:
 };
 
-#endif // DIALOG_H
+#endif

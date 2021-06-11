@@ -1,5 +1,6 @@
 #include "Engine.h"
-#include "../UI/MainMenu.h"
+#include "../GUI/GUI_Window.h"
+#include "../GUI/GUI_Button.h"
 
 void Engine::Init(Canvas* CanvasSource, SpriteManager* SpriteSource, XmlManager* XmlSource, ObjectManager* ObjectSource, ScriptManager* ScriptSource, Location* LocationSource, Settings* SettingsSource, ImageManager* ImageSource)
 {
@@ -23,7 +24,15 @@ void Engine::Run()
     size_t y = 0;
     size_t speed = Tile::Width;
 
-    MainMenu main_menu(canvas, setttings, image_manager);
+    size_t pos_x = 0;
+    size_t pos_y = 0;
+
+    GUI::Window main_window(canvas, Rect(0, 0, 800, 600));
+    GUI::Button btn1(canvas, Rect(0, 5, 150, 35));
+    main_window.Attach(&btn1);
+
+    GUI::Button btn2(canvas, Rect(0, 45, 150, 35));
+    main_window.Attach(&btn2);
 
     while (canvas->GetEvent(report))
     {
@@ -50,6 +59,14 @@ void Engine::Run()
             }
         }
 
+        if (report.type == SDL_MOUSEMOTION)
+        {
+            pos_x = report.motion.x;
+            pos_y = report.motion.y;
+        }
+
         location->DrawTiles(Point(x, y));
+
+        main_window.Run(Point(pos_x, pos_y));
     }
 }
