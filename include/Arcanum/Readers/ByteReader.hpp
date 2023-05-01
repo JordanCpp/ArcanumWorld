@@ -12,7 +12,12 @@ namespace Arcanum
         class ByteReader
         {
         public:
-            void Reset(const std::string& path);
+            enum
+            {
+                BigEndian,
+                LittleEndian
+            };
+            void Reset(const std::string& path, size_t type = BigEndian);
             ~ByteReader();
             bool Eof();
             uint8_t u8();
@@ -23,6 +28,7 @@ namespace Arcanum
             void Pos(size_t value);
             void Read(void* buffer, size_t bytes);
         private:
+            size_t _Type;
             std::fstream _File;
         };
     }

@@ -7,6 +7,11 @@ namespace Arcanum
 {
 	namespace Formats
 	{
+		struct Light
+		{
+			uint8_t data[48];
+		};
+
 		struct Sec
 		{
 			enum

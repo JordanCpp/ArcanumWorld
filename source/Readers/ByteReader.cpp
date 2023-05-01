@@ -4,14 +4,14 @@
 using namespace Arcanum::Readers;
 using namespace Arcanum::Core;
 
-#define HTONS(n) (((((unsigned short)(n) & 0xFF)) << 8) | (((unsigned short)(n) & 0xFF00) >> 8))
+#define HTONS(n) (((((uint16_t)(n) & 0xFF)) << 8) | (((uint16_t)(n) & 0xFF00) >> 8))
 
-#define HTONL(n) (((((unsigned long)(n) & 0xFF)) << 24) | \
-                  ((((unsigned long)(n) & 0xFF00)) << 8) | \
-                  ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
-                  ((((unsigned long)(n) & 0xFF000000)) >> 24)) 
+#define HTONL(n) (((((uint32_t)(n) & 0xFF)) << 24) | \
+                  ((((uint32_t)(n) & 0xFF00)) << 8) | \
+                  ((((uint32_t)(n) & 0xFF0000)) >> 8) | \
+                  ((((uint32_t)(n) & 0xFF000000)) >> 24)) 
 
-void ByteReader::Reset(const std::string & path)
+void ByteReader::Reset(const std::string & path, size_t type)
 {
     if (_File.is_open())
         _File.close();
@@ -20,6 +20,8 @@ void ByteReader::Reset(const std::string & path)
 
   if (!_File.is_open())
       throw RuntimeError("Can't open file: " + path);
+
+  _Type = type;
 }
 
 ByteReader::~ByteReader()
@@ -57,7 +59,10 @@ uint16_t ByteReader::u16()
 
   _File.read((char*)&val, sizeof(uint16_t));
 
-  return HTONS(val);
+  if (_Type == BigEndian)
+      return val;
+  else
+      return HTONS(val);
 }
 
 int16_t ByteReader::i16()
@@ -66,7 +71,10 @@ int16_t ByteReader::i16()
 
   _File.read((char*)&val, sizeof(int16_t));
 
-  return HTONS(val);
+  if (_Type == BigEndian)
+      return val;
+  else
+      return HTONS(val);
 }
 
 uint32_t ByteReader::u32()
@@ -75,7 +83,10 @@ uint32_t ByteReader::u32()
 
   _File.read((char*)&val, sizeof(uint32_t));
     
-  return HTONL(val);
+  if (_Type == BigEndian)
+      return val;
+  else
+      return HTONL(val);
 }
 
 int32_t ByteReader::i32()
@@ -84,5 +95,8 @@ int32_t ByteReader::i32()
 
   _File.read((char*)&val, sizeof(int32_t));
     
-  return HTONL(val);
+  if (_Type == BigEndian)
+      return val;
+  else
+      return HTONL(val);
 }

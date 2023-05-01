@@ -13,6 +13,8 @@
 #include <Arcanum/Game/Settings.hpp>
 #include <Arcanum/Loaders/ArtLoader.hpp>
 #include <Arcanum/Managers/SpriteManager.hpp>
+#include <Arcanum/Readers/ByteReader.hpp>
+#include <Arcanum/Readers/SecReader.hpp>
 
 namespace Arcanum
 {
@@ -37,6 +39,8 @@ namespace Arcanum
 			LDL::Time::FpsLimiter _FpsLimiter;
 			Loaders::ArtLoader _ArtLoader;
 			Managers::SpriteManager _SpriteManager;
+			Readers::ByteReader _ByteReader;
+			Readers::SecReader _SecReader;
 		};
 	}
 }

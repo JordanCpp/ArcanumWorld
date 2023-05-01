@@ -12,8 +12,10 @@ Engine::Engine(Settings* settings) :
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),
 	_Render(&_RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
-	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager)
+	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager),
+	_SecReader(&_ByteReader)
 {
+	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 }
 
 void Engine::Run()
