@@ -19,7 +19,7 @@ namespace Arcanum
 			size_t Frames();
 			void Frame(size_t index);
 		private:
-			ArtFile _File;
+			Formats::ArtFile _File;
 			LDL::Graphics::Point2u _Size;
 			LDL::Graphics::Point2u _Offset;
 			LDL::Graphics::Point2u _Delta;

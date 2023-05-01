@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 
+using namespace Arcanum::Formats;
 
 bool ArtFrame::Inc()
 {

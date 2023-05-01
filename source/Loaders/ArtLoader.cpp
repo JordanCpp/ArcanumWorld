@@ -1,6 +1,7 @@
 #include <Arcanum/Loaders/ArtLoader.hpp>
 
 using namespace Arcanum::Loaders;
+using namespace Arcanum::Formats;
 using namespace LDL::Graphics;
 
 void ArtLoader::Load(const std::string& path)
