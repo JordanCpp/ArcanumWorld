@@ -15,7 +15,8 @@ add_library(ArcanumLib STATIC
 "source/Graphics/Sprite.cpp"
 "source/Loaders/ArtLoader.cpp"
 "source/Managers/SpriteManager.cpp"
-"source/Readers/MsgReader.cpp")
+"source/Readers/MsgReader.cpp"
+"source/Core/RuntimeError.cpp")
 
 add_executable(Arcanum "source/main.cpp")
 

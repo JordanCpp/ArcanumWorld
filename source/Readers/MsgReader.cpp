@@ -1,8 +1,8 @@
 #include <Arcanum/Readers/MsgReader.hpp>
-#include <LDL/Core/RuntimeError.hpp>
+#include <Arcanum/Core/RuntimeError.hpp>
 
 using namespace Arcanum::Readers;
-using namespace LDL::Core;
+using namespace Arcanum::Core;
 
 void MsgReader::Reset(const std::string& path)
 {
