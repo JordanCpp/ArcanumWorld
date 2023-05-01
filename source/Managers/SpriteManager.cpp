@@ -55,3 +55,8 @@ Sprite* SpriteManager::GetScenery(const std::string& fileName)
 {
     return GetSprite("art/scenery/", fileName);
 }
+
+Sprite* SpriteManager::GetTile(const std::string& fileName)
+{
+    return GetSprite("art/tile/", fileName);
+}

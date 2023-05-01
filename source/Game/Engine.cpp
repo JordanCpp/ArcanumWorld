@@ -36,9 +36,12 @@ void Engine::Run()
 
 		_Render.Color(Color(255, 5, 255));
 		_Render.Clear();
-		
+
+		_Render.Draw(_SpriteManager.GetTile("drtTS1aa.ART")->GetImage(0)->GetTexture(), Point2u(0, 300));
+		_Render.Draw(_SpriteManager.GetTile("drtWK12c.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
+
 		_Render.Draw(_SpriteManager.GetScenery("engine.ART")->GetImage(0)->GetTexture(), Point2u(0, 0));
-		_Render.Draw(_SpriteManager.GetScenery("engine_old.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
+        _Render.Draw(_SpriteManager.GetScenery("engine_old.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
 
 		_Render.End();
 

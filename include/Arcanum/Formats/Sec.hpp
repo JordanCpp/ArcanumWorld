@@ -13,6 +13,17 @@ namespace Arcanum
 			uint8_t data[48];
 		};
 
+		struct TileScript
+		{
+			uint32_t unknown1;
+			uint16_t index;
+			uint16_t unknown2;
+			uint32_t flags;
+			uint32_t counters;
+			uint32_t scriptId;
+			uint32_t unknown3;
+		};
+
 		struct Sec
 		{
 			enum

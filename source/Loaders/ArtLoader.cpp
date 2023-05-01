@@ -48,6 +48,7 @@ void ArtLoader::Frame(size_t index)
 	size_t dh = _File.frame_data[index].header.d_y;
 	_Delta = Point2u(dw, dh);
 
+	_Pixels.clear();
 	_Pixels.resize(w * h * 4);
 
 	for (size_t y = 0; y < h; y++)

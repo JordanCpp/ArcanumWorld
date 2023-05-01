@@ -24,7 +24,10 @@ add_library(ArcanumLib STATIC
 "source/Readers/MesReader.cpp"
 "source/Readers/SecReader.cpp"
 
-"source/Core/RuntimeError.cpp")
+"source/Core/RuntimeError.cpp"
+
+"source/Objects/Tile.cpp"
+"source/Objects/Location.cpp")
 
 add_executable(Arcanum "source/main.cpp")
 

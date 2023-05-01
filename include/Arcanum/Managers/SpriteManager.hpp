@@ -19,6 +19,7 @@ namespace Arcanum
 			~SpriteManager();
 			Graphics::Sprite* GetSprite(const std::string& dir, const std::string& file);
 			Graphics::Sprite* GetScenery(const std::string& fileName);
+			Graphics::Sprite* GetTile(const std::string& fileName);
 		private:
 			LDL::Graphics::RenderContext* _RenderContext;
 			Loaders::ArtLoader* _ArtLoader;

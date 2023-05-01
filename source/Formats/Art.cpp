@@ -150,6 +150,8 @@ void ArtFile::LoadArt(const std::string &fname)
 
 	if (animated) frames *= 8;
 
+	palette_data.clear();
+
 	for (int i = 0; i < palettes; i++)
 	{
 		palette_data.push_back(ArtTable());

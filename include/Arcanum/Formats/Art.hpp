@@ -32,7 +32,7 @@ namespace Arcanum
 
 		struct ArtTable
 		{
-			ArtColor colors[256];
+			ArtColor colors[256] = { 0 };
 		};
 
 		struct ArtHeader
@@ -62,9 +62,9 @@ namespace Arcanum
 		struct ArtFrame
 		{
 			ArtFrameHeader header = { 0 };
-			std::vector<char> data;
-			std::vector<uint8_t> pixels;
-			int px, py;
+			std::vector<char> data = { 0 };
+			std::vector<uint8_t> pixels = { 0 };
+			int px, py =0;
 
 			bool Inc();
 			void Dec();
@@ -91,8 +91,8 @@ namespace Arcanum
 			std::vector<ArtFrame> frame_data;
 			std::vector<ArtTable> palette_data;
 
-			int palettes = { 0 };
-			int frames = { 0 };
+			int palettes  = { 0 };
+			int frames    = { 0 };
 			int key_frame = { 0 };
 			bool animated = { 0 };
 
