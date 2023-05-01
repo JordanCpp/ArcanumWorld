@@ -1,10 +1,10 @@
-#include <Arcanum/Readers/MsgReader.hpp>
+#include <Arcanum/Readers/MesReader.hpp>
 #include <Arcanum/Core/RuntimeError.hpp>
 
 using namespace Arcanum::Readers;
 using namespace Arcanum::Core;
 
-void MsgReader::Reset(const std::string& path)
+void MesReader::Reset(const std::string& path)
 {
 	_File.open(path, std::ios::in);
 

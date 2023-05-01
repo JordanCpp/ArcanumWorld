@@ -1,5 +1,5 @@
-#ifndef Arcanum_Readers_MsgReader_hpp
-#define Arcanum_Readers_MsgReader_hpp
+#ifndef Arcanum_Readers_MesReader_hpp
+#define Arcanum_Readers_MesReader_hpp
 
 #include <string>
 #include <fstream>
@@ -8,7 +8,7 @@ namespace Arcanum
 {
 	namespace Readers
 	{
-		class MsgReader
+		class MesReader
 		{
 		public:
 			void Reset(const std::string& path);
