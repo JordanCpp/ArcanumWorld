@@ -17,7 +17,7 @@ namespace Arcanum
                 BigEndian,
                 LittleEndian
             };
-            void Reset(const std::string& path, size_t type = BigEndian);
+            void Reset(const std::string& path, size_t type);
             ~ByteReader();
             bool Eof();
             uint8_t u8();

@@ -2,6 +2,7 @@
 #define Arcanum_Formats_Sec_hpp
 
 #include <stdint.h>
+#include <vector>
 
 namespace Arcanum
 {
@@ -21,8 +22,9 @@ namespace Arcanum
 			};
 
 			uint32_t lights_count;
-			uint32_t tiles[MaxTiles];
-			uint32_t roofs[MaxRoffs];
+			std::vector<Light> lights;
+			std::vector<uint32_t> tiles;
+			std::vector<uint32_t> roofs;
 		};
 	}
 }
