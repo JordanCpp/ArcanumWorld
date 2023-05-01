@@ -57,7 +57,7 @@ struct ArtFrameHeader
 
 struct ArtFrame
 {
-	ArtFrameHeader header;
+	ArtFrameHeader header = { 0 };
 	std::vector<char> data;
 	std::vector<uint8_t> pixels;
 	int px, py;
@@ -83,14 +83,14 @@ struct ArtFrame
 
 struct ArtFile
 {
-	ArtHeader header;
+	ArtHeader header = { 0 };
 	std::vector<ArtFrame> frame_data;
 	std::vector<ArtTable> palette_data;
 
-	int palettes;
-	int frames;
-	int key_frame;
-	bool animated;
+	int palettes  = { 0 };
+	int frames    = { 0 };
+	int key_frame = { 0 };
+	bool animated = { 0 };
 
 	void Reset();
 	void LoadArt(const std::string &fname);

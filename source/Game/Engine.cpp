@@ -12,7 +12,7 @@ Engine::Engine(Settings* settings) :
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),
 	_Render(&_RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
-	_SpriteManager(&_RenderContext, &_ArtLoader)
+	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager)
 {
 }
 
@@ -35,8 +35,8 @@ void Engine::Run()
 		_Render.Color(Color(255, 5, 255));
 		_Render.Clear();
 		
-		_Render.Draw(_SpriteManager.GetSprite("data/art/scenery/engine.ART")->GetImage(0)->GetTexture(), Point2u(0, 0));
-		_Render.Draw(_SpriteManager.GetSprite("data/art/scenery/engine_old.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
+		_Render.Draw(_SpriteManager.GetScenery("engine.ART")->GetImage(0)->GetTexture(), Point2u(0, 0));
+		_Render.Draw(_SpriteManager.GetScenery("engine_old.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
 
 		_Render.End();
 

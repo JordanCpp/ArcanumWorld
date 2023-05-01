@@ -35,7 +35,6 @@ namespace Arcanum
 			LDL::Time::FpsCounter _FpsCounter;
 			LDL::Core::NumberToString _Convert;
 			LDL::Time::FpsLimiter _FpsLimiter;
-			LDL::Graphics::Texture* _Texture;
 			Loaders::ArtLoader _ArtLoader;
 			Managers::SpriteManager _SpriteManager;
 		};

@@ -11,6 +11,8 @@ int main()
 	try
 	{
 		Settings settings;
+
+		settings.Path("data/");
 		settings.Title("Arcanum World");
 		settings.Size(Point2u(800, 600));
 		settings.Fps(60);

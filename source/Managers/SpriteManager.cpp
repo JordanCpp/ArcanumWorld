@@ -1,11 +1,14 @@
 #include <Arcanum/Managers/SpriteManager.hpp>
 
+using namespace LDL::Graphics;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Graphics;
+using namespace Arcanum::Loaders;
 
-SpriteManager::SpriteManager(LDL::Graphics::RenderContext* renderContext, Loaders::ArtLoader* artLoader) :
+SpriteManager::SpriteManager(RenderContext* renderContext, ArtLoader* artLoader, PathManager* pathManager) :
     _RenderContext(renderContext),
-    _ArtLoader(artLoader)
+    _ArtLoader(artLoader),
+    _PathManager(pathManager)
 {
 }
 
@@ -15,8 +18,10 @@ SpriteManager::~SpriteManager()
         delete i->second;
 }
 
-Sprite* SpriteManager::GetSprite(const std::string& path)
+Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file)
 {
+    const char* path = _PathManager->Path(dir, file).c_str();
+
     auto i = _Sprites.find(path);
 
     Sprite* result = nullptr;
@@ -44,4 +49,9 @@ Sprite* SpriteManager::GetSprite(const std::string& path)
     }
 
     return result;
+}
+
+Sprite* SpriteManager::GetScenery(const std::string& fileName)
+{
+    return GetSprite("art/scenery/", fileName);
 }
