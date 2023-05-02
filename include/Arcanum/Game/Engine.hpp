@@ -15,6 +15,7 @@
 #include <Arcanum/Managers/SpriteManager.hpp>
 #include <Arcanum/Readers/ByteReader.hpp>
 #include <Arcanum/Readers/SecReader.hpp>
+#include <Arcanum/Painters/LocationPainter.hpp>
 
 namespace Arcanum
 {
@@ -41,6 +42,8 @@ namespace Arcanum
 			Managers::SpriteManager _SpriteManager;
 			Readers::ByteReader _ByteReader;
 			Readers::SecReader _SecReader;
+			Painters::LocationPainter _LocationPainter;
+			Objects::Location _Location;
 		};
 	}
 }

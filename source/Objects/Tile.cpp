@@ -12,3 +12,8 @@ void Tile::Init(Sprite* sprite)
 {
 	_Body = sprite;
 }
+
+Sprite* Tile::Body()
+{
+	return _Body;
+}

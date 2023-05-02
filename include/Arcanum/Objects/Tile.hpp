@@ -18,6 +18,7 @@ namespace Arcanum
 
 			Tile();
 			void Init(Graphics::Sprite* sprite);
+			Graphics::Sprite* Body();
 		private:
 			Graphics::Sprite* _Body;
 		};

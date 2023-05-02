@@ -27,7 +27,9 @@ add_library(ArcanumLib STATIC
 "source/Core/RuntimeError.cpp"
 
 "source/Objects/Tile.cpp"
-"source/Objects/Location.cpp")
+"source/Objects/Location.cpp"
+
+"source/Painters/LocationPainter.cpp")
 
 add_executable(Arcanum "source/main.cpp")
 
