@@ -7,7 +7,7 @@ The project uses the LDL library.
 https://forums.arcanumclub.org/index.php?showtopic=12408
 
 # Screenshots - Key W,A,S,D
-![0](screenshots/12_TileMap2.jpg)
+![0](screenshots/0.png)
 
 # Friendly projects.
 https://github.com/arcanum-project
