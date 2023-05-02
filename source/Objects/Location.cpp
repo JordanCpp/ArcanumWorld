@@ -18,9 +18,15 @@ void Location::Size(const Point2u& size)
     _Size = size;
 
     _Tiles.resize(_Size.PosX() * _Size.PosY());
+    _Sceneries.resize(_Size.PosX() * _Size.PosY());
 }
 
 std::vector<Tile>& Location::Tiles()
 {
     return _Tiles;
+}
+
+std::vector<Scenery>& Location::Sceneries()
+{
+    return _Sceneries;
 }

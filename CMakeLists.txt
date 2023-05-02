@@ -28,6 +28,7 @@ add_library(ArcanumLib STATIC
 
 "source/Objects/Tile.cpp"
 "source/Objects/Location.cpp"
+"source/Objects/Scenery.cpp"
 
 "source/Painters/LocationPainter.cpp")
 

@@ -26,6 +26,10 @@ Engine::Engine(Settings* settings) :
 	{
 		_Location.Tiles()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
 	}
+	
+	_Location.Sceneries()[_Location.Index(3, 7)].Init(_SpriteManager.GetScenery("savanna_tree02.ART"));
+
+	_Location.Sceneries()[_Location.Index(9, 7)].Init(_SpriteManager.GetScenery("engine.ART"));
 }
 
 void Engine::Run()

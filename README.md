@@ -8,6 +8,7 @@ https://forums.arcanumclub.org/index.php?showtopic=12408
 
 # Screenshots - Key W,A,S,D
 ![0](screenshots/0.png)
+![1](screenshots/1.png)
 
 # Friendly projects.
 https://github.com/arcanum-project
