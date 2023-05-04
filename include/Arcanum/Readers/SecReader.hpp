@@ -18,7 +18,7 @@ namespace Arcanum
             void ReadRoofs();
         private:
             ByteReader*  _ByteReader;
-            Formats::Sec _Sec = { 0 };
+            Formats::Sec _Sec;
         };
     }
 }

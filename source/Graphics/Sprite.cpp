@@ -16,3 +16,8 @@ Image* Sprite::GetImage(size_t index)
 {
 	return _Images[index];
 }
+
+Image* Sprite::Single()
+{
+	return GetImage(0);
+}

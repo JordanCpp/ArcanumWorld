@@ -16,7 +16,9 @@ Engine::Engine(Settings* settings) :
 	_FpsLimiter(_Settings->Fps()),
 	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager),
 	_SecReader(&_ByteReader),
-	_LocationPainter(&_Render)
+	_LocationPainter(&_Render),
+	_WidgetManager(&_Render),
+	_GameMenu(&_Render)
 {
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
@@ -24,12 +26,12 @@ Engine::Engine(Settings* settings) :
 	
 	for (size_t i = 0; i < _Location.Size().PosX() * _Location.Size().PosY(); i++)
 	{
-		_Location.Tiles()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
+		_Location.Tiles()[i].Init(_SpriteManager.Tile("grsbse0c.ART"));
 	}
 	
-	_Location.Sceneries()[_Location.Index(3, 7)].Init(_SpriteManager.GetScenery("savanna_tree02.ART"));
+	_Location.Sceneries()[_Location.Index(3, 7)].Init(_SpriteManager.Scenery("savanna_tree02.ART"));
 
-	_Location.Sceneries()[_Location.Index(9, 7)].Init(_SpriteManager.GetScenery("engine.ART"));
+	_Location.Sceneries()[_Location.Index(9, 7)].Init(_SpriteManager.Scenery("engine.ART"));
 }
 
 void Engine::Run()
@@ -52,10 +54,12 @@ void Engine::Run()
 
 		_Render.Begin();
 
-		_Render.Color(Color(255, 5, 255));
+		_Render.Color(Color(0, 162, 232));
 		_Render.Clear();
 
 		_LocationPainter.Draw(&_Location, Point2u(dx, dy));
+
+		_GameMenu.Draw();
 
 		_Render.End();
 
@@ -63,22 +67,22 @@ void Engine::Run()
 
 		if (report.IsKeyPresed(KeyboardKey::W))
 		{
-			dy -= step;
+			dy += step;
 		}
 
 		if (report.IsKeyPresed(KeyboardKey::S))
 		{
-			dy += step;
+			dy -= step;
 		}
 
 		if (report.IsKeyPresed(KeyboardKey::A))
 		{
-			dx -= step;
+			dx += step;
 		}
 
 		if (report.IsKeyPresed(KeyboardKey::D))
 		{
-			dx += step;
+			dx -= step;
 		}
 
 		if (_FpsCounter.Calc())

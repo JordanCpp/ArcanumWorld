@@ -14,6 +14,7 @@ namespace Arcanum
 			void Init(Graphics::Sprite* sprite);
 			Graphics::Sprite* Body();
 		private:
+			LDL::Graphics::Point2u _Pos;
 			Graphics::Sprite* _Body;
 		};
 	}

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 using namespace Arcanum::Formats;
 
@@ -171,4 +172,23 @@ void ArtFile::LoadArt(const std::string &fname)
 	}
 
 	source.close();
+}
+
+ArtColor::ArtColor() :
+	b(0),
+	g(0),
+	r(0),
+	a(0)
+{
+}
+
+ArtFrameHeader::ArtFrameHeader() :
+	width(0),
+	height(0),
+	size(0),
+	c_x(0),
+	c_y(0),
+	d_x(0),
+	d_y(0)
+{
 }

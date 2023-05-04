@@ -11,9 +11,11 @@ add_library(ArcanumLib STATIC
 
 "source/Managers/PathManager.cpp"
 "source/Managers/SpriteManager.cpp"
+"source/Managers/WidgetManager.cpp"
 
 "source/Formats/Art.cpp"
 "source/Formats/Msg.cpp"
+"source/Formats/Sec.cpp"
 
 "source/Graphics/Image.cpp"
 "source/Graphics/Sprite.cpp"
@@ -29,6 +31,13 @@ add_library(ArcanumLib STATIC
 "source/Objects/Tile.cpp"
 "source/Objects/Location.cpp"
 "source/Objects/Scenery.cpp"
+
+"source/Widgets/Widget.cpp"
+"source/Widgets/Button.cpp"
+"source/Widgets/Form.cpp"
+"source/Widgets/Container.cpp"
+
+"source/Forms/GameMenu.cpp"
 
 "source/Painters/LocationPainter.cpp")
 

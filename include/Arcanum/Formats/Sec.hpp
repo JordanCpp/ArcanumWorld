@@ -31,7 +31,7 @@ namespace Arcanum
 				MaxTiles = 4096,
 				MaxRoffs = 256
 			};
-
+			Sec();
 			uint32_t lights_count;
 			std::vector<Light> lights;
 			std::vector<uint32_t> tiles;

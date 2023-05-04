@@ -14,6 +14,7 @@ namespace Arcanum
 			~Sprite();
 			void Append(Image* image);
 			Image* GetImage(size_t index);
+			Image* Single();
 		private:
 			std::vector<Image*> _Images;
 		};

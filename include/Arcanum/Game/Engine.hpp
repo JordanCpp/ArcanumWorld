@@ -16,6 +16,8 @@
 #include <Arcanum/Readers/ByteReader.hpp>
 #include <Arcanum/Readers/SecReader.hpp>
 #include <Arcanum/Painters/LocationPainter.hpp>
+#include <Arcanum/Managers/WidgetManager.hpp>
+#include <Arcanum/Forms/GameMenu.hpp>
 
 namespace Arcanum
 {
@@ -44,6 +46,8 @@ namespace Arcanum
 			Readers::SecReader _SecReader;
 			Painters::LocationPainter _LocationPainter;
 			Objects::Location _Location;
+			Managers::WidgetManager _WidgetManager;
+			Forms::GameMenu _GameMenu;
 		};
 	}
 }

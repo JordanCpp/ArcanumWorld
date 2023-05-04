@@ -10,7 +10,7 @@ LocationPainter::LocationPainter(Render* render) :
 {
 }
 
-void LocationPainter::Draw(Location* location, LDL::Graphics::Point2u& start)
+void LocationPainter::Draw(Location* location, const LDL::Graphics::Point2u& start)
 {
 	for (size_t x = 0; x < location->Size().PosX(); x++)
 	{
@@ -22,7 +22,7 @@ void LocationPainter::Draw(Location* location, LDL::Graphics::Point2u& start)
 			Point2u pt = _Isometric.CartesianToIsometric(Point2u(dx, dy));
 
 			size_t   index   = location->Index(x, y);
-			Texture* texture = location->Tiles()[index].Body()->GetImage(0)->GetTexture();
+			Texture* texture = location->Tiles()[index].Body()->Single()->GetTexture();
 
 			_Render->Draw(texture, Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY()));
 		}
@@ -40,14 +40,11 @@ void LocationPainter::Draw(Location* location, LDL::Graphics::Point2u& start)
 			size_t   index = location->Index(x, y);
 			Sprite* sprite = location->Sceneries()[index].Body();
 
-
-
 			if (sprite != nullptr)
 			{
-				size_t w = 0;
-				size_t h = sprite->GetImage(0)->GetTexture()->Size().PosY();
+				size_t h = sprite->Single()->GetTexture()->Size().PosY();
 
-				_Render->Draw(sprite->GetImage(0)->GetTexture(), Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY() - h));
+				_Render->Draw(sprite->Single()->GetTexture(), Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY() - h));
 			}
 		}
 	}
