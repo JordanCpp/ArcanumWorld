@@ -13,6 +13,8 @@ namespace Arcanum
         {
         public:
             LocationPainter(LDL::Graphics::Render* render);
+            void DrawTiles(Objects::Location* location, const LDL::Graphics::Point2u& start);
+            void DrawSceneries(Objects::Location* location, const LDL::Graphics::Point2u& start);
             void Draw(Objects::Location* location, const LDL::Graphics::Point2u& start);
         private:
             LDL::Graphics::Render*   _Render;

@@ -2,6 +2,7 @@
 
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;
+using namespace LDL::Graphics;
 
 Scenery::Scenery() :
 	_Body(nullptr)
@@ -16,4 +17,9 @@ void Scenery::Init(Sprite* sprite)
 Sprite* Scenery::Body()
 {
 	return _Body;
+}
+
+const Point2u& Scenery::Pos()
+{
+	return _Pos;
 }

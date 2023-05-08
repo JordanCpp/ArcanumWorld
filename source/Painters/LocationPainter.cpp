@@ -10,42 +10,42 @@ LocationPainter::LocationPainter(Render* render) :
 {
 }
 
-void LocationPainter::Draw(Location* location, const LDL::Graphics::Point2u& start)
+void LocationPainter::DrawTiles(Location* location, const Point2u& start)
 {
-	for (size_t x = 0; x < location->Size().PosX(); x++)
+	Point2u pos;
+
+	for (size_t i = 0; i < location->Tiles().size(); i++)
 	{
-		for (size_t y = 0; y < location->Size().PosY(); y++)
+		pos = location->Tiles()[i].Pos();
+
+		Texture* texture = location->Tiles()[i].Body()->Single()->GetTexture();
+
+		_Render->Draw(texture, Point2u(start.PosX() + pos.PosX(), start.PosY() + pos.PosY()));
+	}
+}
+
+void LocationPainter::DrawSceneries(Location* location, const Point2u& start)
+{
+	Point2u tilePos;
+	Point2u targetPos;
+
+	for (size_t i = 0; i < location->Sceneries().size(); i++)
+	{
+		tilePos = location->Tiles()[i].Pos();
+
+		Sprite* sprite = location->Sceneries()[i].Body();
+
+		if (sprite != nullptr)
 		{
-			size_t dx = y * Tile::Width / 2;
-			size_t dy = x * Tile::Height;
-			 
-			Point2u pt = _Isometric.CartesianToIsometric(Point2u(dx, dy));
+			size_t h = sprite->Single()->GetTexture()->Size().PosY();
 
-			size_t   index   = location->Index(x, y);
-			Texture* texture = location->Tiles()[index].Body()->Single()->GetTexture();
-
-			_Render->Draw(texture, Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY()));
+			_Render->Draw(sprite->Single()->GetTexture(), Point2u(start.PosX() + tilePos.PosX(), start.PosY() + tilePos.PosY() - h));
 		}
 	}
+}
 
-	for (size_t x = 0; x < location->Size().PosX(); x++)
-	{
-		for (size_t y = 0; y < location->Size().PosY(); y++)
-		{
-			size_t dx = y * Tile::Width / 2;
-			size_t dy = x * Tile::Height;
-
-			Point2u pt = _Isometric.CartesianToIsometric(Point2u(dx, dy));
-
-			size_t   index = location->Index(x, y);
-			Sprite* sprite = location->Sceneries()[index].Body();
-
-			if (sprite != nullptr)
-			{
-				size_t h = sprite->Single()->GetTexture()->Size().PosY();
-
-				_Render->Draw(sprite->Single()->GetTexture(), Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY() - h));
-			}
-		}
-	}
+void LocationPainter::Draw(Location* location, const Point2u& start)
+{
+	DrawTiles(location, start);
+	DrawSceneries(location, start);
 }

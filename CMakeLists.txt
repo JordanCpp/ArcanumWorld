@@ -19,6 +19,7 @@ add_library(ArcanumLib STATIC
 
 "source/Graphics/Image.cpp"
 "source/Graphics/Sprite.cpp"
+"source/Graphics/Camera.cpp"
 
 "source/Loaders/ArtLoader.cpp"
 
@@ -29,8 +30,12 @@ add_library(ArcanumLib STATIC
 "source/Core/RuntimeError.cpp"
 
 "source/Objects/Tile.cpp"
+"source/Objects/Critter.cpp"
 "source/Objects/Location.cpp"
 "source/Objects/Scenery.cpp"
+"source/Objects/TileData.cpp"
+"source/Objects/Script.cpp"
+"source/Objects/ScriptCritter.cpp"
 
 "source/Widgets/Widget.cpp"
 "source/Widgets/Button.cpp"
@@ -39,7 +44,8 @@ add_library(ArcanumLib STATIC
 
 "source/Forms/GameMenu.cpp"
 
-"source/Painters/LocationPainter.cpp")
+"source/Painters/LocationPainter.cpp"
+"source/Painters/LocationPainter3D.cpp")
 
 add_executable(Arcanum "source/main.cpp")
 

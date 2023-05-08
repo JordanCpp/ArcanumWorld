@@ -18,6 +18,12 @@
 #include <Arcanum/Painters/LocationPainter.hpp>
 #include <Arcanum/Managers/WidgetManager.hpp>
 #include <Arcanum/Forms/GameMenu.hpp>
+#include <Arcanum/Objects/TileData.hpp>
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Vec3f.hpp>
+#include <LDL/Math/Funcs.hpp>
+#include <Arcanum/Graphics/Camera.hpp>
+#include <Arcanum/Painters/LocationPainter3D.hpp>
 
 namespace Arcanum
 {
@@ -48,6 +54,12 @@ namespace Arcanum
 			Objects::Location _Location;
 			Managers::WidgetManager _WidgetManager;
 			Forms::GameMenu _GameMenu;
+			LDL::Math::Mat4f _Projection;
+			LDL::Math::Mat4f _ModelView;
+			Objects::TileData _TileData;
+			Graphics::Camera _Camera;
+			Painters::LocationPainter3D _LocationPainter3D;
+			int _Tex1 = 0;
 		};
 	}
 }
