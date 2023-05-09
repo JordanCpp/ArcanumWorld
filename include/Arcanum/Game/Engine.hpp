@@ -28,6 +28,7 @@ namespace Arcanum
 		{
 		public:
 			Engine(Settings* settings);
+			void ShowFps();
 			void Draw();
 			void Update();
 			void Run();

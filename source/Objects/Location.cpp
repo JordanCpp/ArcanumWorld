@@ -50,3 +50,8 @@ std::vector<Scenery>& Location::Sceneries()
 {
     return _Sceneries;
 }
+
+Scenery& Location::GetScenery(size_t x, size_t y)
+{
+	return _Sceneries[Index(x, y)];
+}

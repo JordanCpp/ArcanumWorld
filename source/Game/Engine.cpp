@@ -7,6 +7,7 @@ using namespace LDL::Allocators;
 using namespace LDL::Enums;
 using namespace LDL::Loaders;
 using namespace LDL::Events;
+using namespace LDL::Time;
 using namespace Arcanum::Game;
 
 Engine::Engine(Settings* settings) :
@@ -14,7 +15,7 @@ Engine::Engine(Settings* settings) :
 	_PathManager(settings->Path()),
 	_ImageAllocator(Allocator::Mb * 2),
 	_ImageLoader(&_ImageAllocator),
-	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),
+	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
 	_Render(&_RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
 	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager),
@@ -22,7 +23,7 @@ Engine::Engine(Settings* settings) :
 	_LocationPainter(&_Render),
 	_WidgetManager(&_Render),
 	_GameMenu(&_Render),
-	_Camera(_Render.Size())
+	_Camera(Point2u(400, 50), _Render.Size())
 {
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
@@ -34,9 +35,19 @@ Engine::Engine(Settings* settings) :
 	{
 		_Location.Tiles()[i].Init(_SpriteManager.Tile("grsbse0c.ART"));
 	}
-	
-	_Location.Sceneries()[_Location.Index(3, 7)].Init(_SpriteManager.Scenery("savanna_tree02.ART"));
-	_Location.Sceneries()[_Location.Index(9, 7)].Init(_SpriteManager.Scenery("engine.ART"));
+
+	_Location.GetScenery(3, 7).Init(_SpriteManager.Scenery("savanna_tree02.ART"));
+	_Location.GetScenery(9, 7).Init(_SpriteManager.Scenery("engine.ART"));
+}
+
+void Engine::ShowFps()
+{
+	if (_FpsCounter.Calc())
+	{
+		_Title = _Settings->Title() + " Fps: " + _Convert.Convert(_FpsCounter.Fps());
+		_Window.Title(_Title);
+		_FpsCounter.Clear();
+	}
 }
 
 void Engine::Draw()
@@ -76,11 +87,6 @@ void Engine::Run()
 
 		_FpsLimiter.Throttle();
 
-		if (_FpsCounter.Calc())
-		{
-			_Title = _Settings->Title() + " Fps: " + _Convert.Convert(_FpsCounter.Fps());
-			_Window.Title(_Title);
-			_FpsCounter.Clear();
-		}
+		ShowFps();
 	}
 }

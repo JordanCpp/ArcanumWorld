@@ -12,7 +12,7 @@ namespace Arcanum
 		class Camera
 		{
 		public:
-			Camera(const LDL::Graphics::Point2u& size);
+			Camera(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			const LDL::Graphics::Point2u& Pos();
 			const LDL::Graphics::Point2u& Size();
 			void Handle(LDL::Events::Event& event);

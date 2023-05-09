@@ -5,8 +5,8 @@ using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Enums;
 
-Camera::Camera(const Point2u& size) :
-	_Area(Point2u(0, 0), size),
+Camera::Camera(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size) :
+	_Area(pos, size),
 	_Step(25)
 {
 }

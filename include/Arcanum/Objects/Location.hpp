@@ -18,6 +18,7 @@ namespace Arcanum
 			const LDL::Graphics::Point2u& Size();
 			std::vector<Tile>& Tiles();
 			std::vector<Scenery>& Sceneries();
+			Scenery& GetScenery(size_t x, size_t y);
 		private:
 			LDL::Graphics::Isometric _Isometric;
 			LDL::Graphics::Point2u _Size;
