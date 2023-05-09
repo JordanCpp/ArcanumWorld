@@ -12,6 +12,7 @@ add_library(ArcanumLib STATIC
 "source/Managers/PathManager.cpp"
 "source/Managers/SpriteManager.cpp"
 "source/Managers/WidgetManager.cpp"
+"source/Managers/ScriptManager.cpp"
 
 "source/Formats/Art.cpp"
 "source/Formats/Msg.cpp"
@@ -43,7 +44,9 @@ add_library(ArcanumLib STATIC
 
 "source/Forms/GameMenu.cpp"
 
-"source/Painters/LocationPainter.cpp")
+"source/Painters/LocationPainter.cpp"
+
+"source/Scripts/PlayerScript.cpp")
 
 add_executable(Arcanum "source/main.cpp")
 

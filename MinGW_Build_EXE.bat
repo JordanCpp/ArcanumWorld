@@ -13,6 +13,7 @@ source\Painters\*.cpp           ^
 source\Readers\*.cpp           ^
 source\Widgets\*.cpp           ^
 source\Forms\*.cpp           ^
+source\Scripts\*.cpp           ^
 -Iinclude\ -Idependencies\LDL\include\ -L. -ldependencies\LDL\lib\LDL_MinGW
 
 pause

@@ -20,7 +20,7 @@ Engine::Engine(Settings* settings) :
 	_FpsLimiter(_Settings->Fps()),
 	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager),
 	_SecReader(&_ByteReader),
-	_LocationPainter(&_Render),
+	_LocationPainter(&_Render, &_Location),
 	_WidgetManager(&_Render),
 	_GameMenu(&_Render),
 	_Camera(Point2u(400, 50), _Render.Size())
@@ -77,7 +77,7 @@ void Engine::Run()
 		_Render.Color(Color(0, 0, 0));
 		_Render.Clear();
 
-		_LocationPainter.Draw(&_Location, _Camera.Pos());
+		_LocationPainter.Draw(_Camera.Pos());
 
 		_GameMenu.Draw();
 

@@ -13,6 +13,7 @@ namespace Arcanum
 		class ScriptCritter : public Script
 		{
 		public:
+			Critter* Self();
 			void Init(Critter* critter);
 		private:
 			Critter* _Critter;

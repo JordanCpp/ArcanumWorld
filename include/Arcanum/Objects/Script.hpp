@@ -8,6 +8,9 @@ namespace Arcanum
 		class Script
 		{
 		public:
+			void MapEnter();
+			void MapUpdate();
+			void MapExit();
 		private:
 		};
 	}
