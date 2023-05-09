@@ -21,7 +21,8 @@ Engine::Engine(Settings* settings) :
 	_SecReader(&_ByteReader),
 	_LocationPainter(&_Render),
 	_WidgetManager(&_Render),
-	_GameMenu(&_Render)
+	_GameMenu(&_Render),
+	_Camera(_Render.Size())
 {
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
@@ -38,13 +39,17 @@ Engine::Engine(Settings* settings) :
 	_Location.Sceneries()[_Location.Index(9, 7)].Init(_SpriteManager.Scenery("engine.ART"));
 }
 
+void Engine::Draw()
+{
+}
+
+void Engine::Update()
+{
+}
+
 void Engine::Run()
 {
 	Event report = { 0 };
-
-	size_t dx   = 0;
-	size_t dy   = 0;
-	size_t step = 25;
 
 	while (_Window.GetEvent(report))
 	{
@@ -61,31 +66,13 @@ void Engine::Run()
 		_Render.Color(Color(0, 0, 0));
 		_Render.Clear();
 
-		_LocationPainter.Draw(&_Location, Point2u(dx, dy));
+		_LocationPainter.Draw(&_Location, _Camera.Pos());
 
 		_GameMenu.Draw();
 
 		_Render.End();
 
-		if (report.IsKeyPresed(KeyboardKey::W))
-		{
-			dy += step;
-		}
-
-		if (report.IsKeyPresed(KeyboardKey::S))
-		{
-			dy -= step;
-		}
-
-		if (report.IsKeyPresed(KeyboardKey::A))
-		{
-			dx += step;
-		}
-
-		if (report.IsKeyPresed(KeyboardKey::D))
-		{
-			dx -= step;
-		}
+		_Camera.Handle(report);
 
 		_FpsLimiter.Throttle();
 

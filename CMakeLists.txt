@@ -19,6 +19,7 @@ add_library(ArcanumLib STATIC
 
 "source/Graphics/Image.cpp"
 "source/Graphics/Sprite.cpp"
+"source/Graphics/Camera.cpp"
 
 "source/Loaders/ArtLoader.cpp"
 

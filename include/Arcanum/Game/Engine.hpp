@@ -18,6 +18,7 @@
 #include <Arcanum/Painters/LocationPainter.hpp>
 #include <Arcanum/Managers/WidgetManager.hpp>
 #include <Arcanum/Forms/GameMenu.hpp>
+#include <Arcanum/Graphics/Camera.hpp>
 
 namespace Arcanum
 {
@@ -27,6 +28,8 @@ namespace Arcanum
 		{
 		public:
 			Engine(Settings* settings);
+			void Draw();
+			void Update();
 			void Run();
 		private:
 			Settings* _Settings;
@@ -48,6 +51,7 @@ namespace Arcanum
 			Objects::Location _Location;
 			Managers::WidgetManager _WidgetManager;
 			Forms::GameMenu _GameMenu;
+			Graphics::Camera _Camera;
 		};
 	}
 }
