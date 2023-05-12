@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <string>
 
-
 namespace Arcanum
 {
 	namespace Managers
@@ -17,10 +16,10 @@ namespace Arcanum
 		public:
 			SpriteManager(LDL::Graphics::RenderContext* renderContext, Loaders::ArtLoader* artLoader, Managers::PathManager* pathManager);
 			~SpriteManager();
-			Graphics::Sprite* Sprite(const std::string& dir, const std::string& file);
-			Graphics::Sprite* Scenery(const std::string& fileName);
-			Graphics::Sprite* Tile(const std::string& fileName);
-			Graphics::Sprite* Interface(const std::string& fileName);	
+			Graphics::Sprite* GetSprite(const std::string& dir, const std::string& file);
+			Graphics::Sprite* GetScenery(const std::string& fileName);
+			Graphics::Sprite* GetTile(const std::string& fileName);
+			Graphics::Sprite* GetInterface(const std::string& fileName);
 		private:
 			LDL::Graphics::RenderContext* _RenderContext;
 			Loaders::ArtLoader* _ArtLoader;

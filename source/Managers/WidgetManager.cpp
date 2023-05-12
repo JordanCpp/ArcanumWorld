@@ -1,7 +1,8 @@
 #include <Arcanum/Managers/WidgetManager.hpp>
 
-using namespace Arcanum::Managers;
 using namespace LDL::Graphics;
+using namespace Arcanum::Managers;
+using namespace Arcanum::Widgets;
 
 WidgetManager::WidgetManager(Render* render) :
 	_Render(render)
@@ -14,18 +15,18 @@ WidgetManager::~WidgetManager()
 		delete _Widgets[i];
 }
 
-Arcanum::Widgets::Button* WidgetManager::Button(const Point2u& pos, const Point2u& size)
+Button* WidgetManager::GetButton(const Point2u& pos, const Point2u& size)
 {
-	auto result = new Arcanum::Widgets::Button(_Render, pos, size);
+	auto result = new Button(_Render, pos, size);
 
 	_Widgets.push_back(result);
 
 	return result;
 }
 
-Arcanum::Widgets::Form* WidgetManager::Form()
+Form* WidgetManager::GetForm()
 {
-	auto result = new Arcanum::Widgets::Form(_Render, Point2u(0,0), _Render->Size());
+	auto result = new Form(_Render, Point2u(0,0), _Render->Size());
 
 	_Widgets.push_back(result);
 

@@ -15,6 +15,7 @@ namespace Arcanum
 			Camera(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			const LDL::Graphics::Point2u& Pos();
 			const LDL::Graphics::Point2u& Size();
+			void Move(const LDL::Graphics::Point2u& pos);
 			void Handle(LDL::Events::Event& event);
 		private:
 			LDL::Graphics::Rect2u _Area;

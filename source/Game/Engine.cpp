@@ -33,11 +33,11 @@ Engine::Engine(Settings* settings) :
 	
 	for (size_t i = 0; i < _Location.Size().PosX() * _Location.Size().PosY(); i++)
 	{
-		_Location.Tiles()[i].Init(_SpriteManager.Tile("grsbse0c.ART"));
+		_Location.Tiles()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
 	}
 
-	_Location.GetScenery(3, 7).Init(_SpriteManager.Scenery("savanna_tree02.ART"));
-	_Location.GetScenery(9, 7).Init(_SpriteManager.Scenery("engine.ART"));
+	_Location.GetScenery(3, 7).Init(_SpriteManager.GetScenery("savanna_tree02.ART"));
+	_Location.GetScenery(9, 7).Init(_SpriteManager.GetScenery("engine.ART"));
 }
 
 void Engine::ShowFps()

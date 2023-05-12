@@ -17,7 +17,7 @@ namespace Arcanum
             virtual ~Widget();
             const LDL::Graphics::Point2u Pos();
             const LDL::Graphics::Point2u Size();
-            LDL::Graphics::Render* Render();
+            LDL::Graphics::Render* GetRender();
             virtual void Draw() = 0;
             std::function<void(LDL::Graphics::Point2u pos)> Click;
             std::function<void(size_t key)> Keyboard;

@@ -2,7 +2,7 @@
 
 using namespace Arcanum::Objects;
 
-void Critter::Init(ScriptCritter* script)
+void Critter::Init(CritterScript* script)
 {
 	_Script = script;
 }

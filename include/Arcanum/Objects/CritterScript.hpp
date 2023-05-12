@@ -1,5 +1,5 @@
-#ifndef Arcanum_Objects_ScriptCritter_hpp
-#define Arcanum_Objects_ScriptCritter_hpp
+#ifndef Arcanum_Objects_CritterScript_hpp
+#define Arcanum_Objects_CritterScript_hpp
 
 #include <Arcanum/Objects/Script.hpp>
 #include <Arcanum/Objects/Critter.hpp>
@@ -10,7 +10,7 @@ namespace Arcanum
 	{
 		class Critter;
 
-		class ScriptCritter : public Script
+		class CritterScript : public Script
 		{
 		public:
 			Critter* Self();

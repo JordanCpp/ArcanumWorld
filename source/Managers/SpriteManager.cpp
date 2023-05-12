@@ -15,22 +15,24 @@ SpriteManager::SpriteManager(RenderContext* renderContext, ArtLoader* artLoader,
 SpriteManager::~SpriteManager()
 {
     for (auto i = _Sprites.begin(); i != _Sprites.end(); i++)
+    {
         delete i->second;
+    }
 }
 
-Arcanum::Graphics::Sprite* SpriteManager::Sprite(const std::string& dir, const std::string& file)
+Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file)
 {
     const char* path = _PathManager->Path(dir, file).c_str();
 
     auto i = _Sprites.find(path);
 
-    Arcanum::Graphics::Sprite* result = nullptr;
+    Sprite* result = nullptr;
 
     if (i == _Sprites.end())
     {
         _ArtLoader->Load(path);
 
-        result = new Arcanum::Graphics::Sprite;
+        result = new Sprite;
 
         for (size_t i = 0; i < _ArtLoader->Frames(); i++)
         {
@@ -51,17 +53,17 @@ Arcanum::Graphics::Sprite* SpriteManager::Sprite(const std::string& dir, const s
     return result;
 }
 
-Sprite* SpriteManager::Scenery(const std::string& fileName)
+Sprite* SpriteManager::GetScenery(const std::string& fileName)
 {
-    return Sprite("art/scenery/", fileName);
+    return GetSprite("art/scenery/", fileName);
 }
 
-Sprite* SpriteManager::Tile(const std::string& fileName)
+Sprite* SpriteManager::GetTile(const std::string& fileName)
 {
-    return Sprite("art/tile/", fileName);
+    return GetSprite("art/tile/", fileName);
 }
 
-Sprite* SpriteManager::Interface(const std::string& fileName)
+Sprite* SpriteManager::GetInterface(const std::string& fileName)
 {
-    return Sprite("art/interface/", fileName);
+    return GetSprite("art/interface/", fileName);
 }

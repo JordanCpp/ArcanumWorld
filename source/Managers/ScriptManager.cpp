@@ -12,9 +12,9 @@ ScriptManager::~ScriptManager()
 		delete _Scripts[i];
 }
 
-ScriptCritter* ScriptManager::GetScriptCritter(const std::string& path)
+CritterScript* ScriptManager::GetCritterScript(const std::string& path)
 {
-	ScriptCritter* result = nullptr;
+	CritterScript* result = nullptr;
 
 	if (path == "PlayerScript")
 		result = new PlayerScript;

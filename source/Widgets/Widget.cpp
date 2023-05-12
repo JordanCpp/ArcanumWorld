@@ -3,7 +3,7 @@
 using namespace Arcanum::Widgets;
 using namespace LDL::Graphics;
 
-Widget::Widget(LDL::Graphics::Render* render, const Point2u& pos, const Point2u& size) :
+Widget::Widget(Render* render, const Point2u& pos, const Point2u& size) :
 	_Render(render),
 	_Area(pos, size)
 {
@@ -23,7 +23,7 @@ const Point2u Widget::Size()
 	return _Area.Size();
 }
 
-LDL::Graphics::Render* Widget::Render()
+Render* Widget::GetRender()
 {
 	return _Render;
 }

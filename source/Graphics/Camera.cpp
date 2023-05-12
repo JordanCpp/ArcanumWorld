@@ -5,7 +5,7 @@ using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Enums;
 
-Camera::Camera(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size) :
+Camera::Camera(const Point2u& pos, const Point2u& size) :
 	_Area(pos, size),
 	_Step(25)
 {
@@ -21,10 +21,15 @@ const Point2u& Camera::Size()
 	return _Area.Size();
 }
 
+void Camera::Move(const Point2u& pos)
+{
+	_Area.Pos(pos.PosX(), pos.PosY());
+}
+
 void Camera::Handle(Event& event)
 {
-	size_t x = _Area.Pos().PosX();
-	size_t y = _Area.Pos().PosY();
+	size_t x = Pos().PosX();
+	size_t y = Pos().PosY();
 
 	if (event.IsKeyPresed(KeyboardKey::W))
 	{
@@ -46,5 +51,5 @@ void Camera::Handle(Event& event)
 		x -= _Step;
 	}
 
-	_Area.Pos(x, y);
+	Move(Point2u(x, y));
 }
