@@ -21,9 +21,10 @@ namespace Arcanum
 			Scenery& GetScenery(size_t x, size_t y);
 		private:
 			LDL::Graphics::Isometric _Isometric;
-			LDL::Graphics::Point2u _Size;
-			std::vector<Tile> _Tiles;
-			std::vector<Scenery> _Sceneries;
+			LDL::Graphics::Point2u   _Size;
+
+			std::vector<Tile>    _TileObjects;
+			std::vector<Scenery> _SceneryObjects;
 		};
 	}
 }

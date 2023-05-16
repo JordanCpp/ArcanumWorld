@@ -7,8 +7,8 @@ void Location::Reset(const Point2u& size)
 {
     _Size = size;
 
-    _Tiles.resize(_Size.PosX() * _Size.PosY());
-    _Sceneries.resize(_Size.PosX() * _Size.PosY());
+    _TileObjects.resize(_Size.PosX() * _Size.PosY());
+    _SceneryObjects.resize(_Size.PosX() * _Size.PosY());
 
 	CalculateTiles();
 }
@@ -43,15 +43,15 @@ const Point2u& Location::Size()
 
 std::vector<Tile>& Location::Tiles()
 {
-    return _Tiles;
+    return _TileObjects;
 }
 
 std::vector<Scenery>& Location::Sceneries()
 {
-    return _Sceneries;
+    return _SceneryObjects;
 }
 
 Scenery& Location::GetScenery(size_t x, size_t y)
 {
-	return _Sceneries[Index(x, y)];
+	return _SceneryObjects[Index(x, y)];
 }

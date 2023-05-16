@@ -36,11 +36,15 @@ add_library(ArcanumLib STATIC
 "source/Objects/Scenery.cpp"
 "source/Objects/Script.cpp"
 "source/Objects/CritterScript.cpp"
+"source/Objects/Wall.cpp"
+"source/Objects/MapObject.cpp"
 
 "source/Widgets/Widget.cpp"
 "source/Widgets/Button.cpp"
 "source/Widgets/Form.cpp"
 "source/Widgets/Container.cpp"
+
+"source/Gameplay/StatCritter.cpp"
 
 "source/Forms/GameMenu.cpp"
 
