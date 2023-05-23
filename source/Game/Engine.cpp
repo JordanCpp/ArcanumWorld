@@ -9,11 +9,14 @@ using namespace LDL::Loaders;
 using namespace LDL::Events;
 using namespace LDL::Time;
 using namespace Arcanum::Game;
+using namespace Arcanum::Objects;
 
 Engine::Engine(Settings* settings) :
 	_Settings(settings),
+	_OriginalAllocator(Allocator::Mb * 4),
+	_ObjectAllocator(Allocator::Mb * 1, &_OriginalAllocator),
 	_PathManager(settings->Path()),
-	_ImageAllocator(Allocator::Mb * 2),
+	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
 	_ImageLoader(&_ImageAllocator),
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
 	_Render(&_RenderContext, &_Window),
@@ -33,11 +36,20 @@ Engine::Engine(Settings* settings) :
 	
 	for (size_t i = 0; i < _Location.Size().PosX() * _Location.Size().PosY(); i++)
 	{
-		_Location.Tiles()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
+		_Location.TileObjects()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
 	}
 
-	_Location.GetScenery(3, 7).Init(_SpriteManager.GetScenery("savanna_tree02.ART"));
-	_Location.GetScenery(9, 7).Init(_SpriteManager.GetScenery("engine.ART"));
+	Scenery* scenery = nullptr;
+
+	scenery = _ObjectAllocator.GetScenery();
+	scenery->Init(_SpriteManager.GetScenery("savanna_tree02.ART"));
+	scenery->Pos(Point2u(3, 7));
+	_Location.SceneryObjects().push_back(scenery);
+
+	scenery = _ObjectAllocator.GetScenery();
+	scenery->Init(_SpriteManager.GetScenery("engine.ART"));
+	scenery->Pos(Point2u(9, 7));
+	_Location.SceneryObjects().push_back(scenery);
 }
 
 void Engine::ShowFps()

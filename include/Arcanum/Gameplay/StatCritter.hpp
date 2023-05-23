@@ -27,6 +27,7 @@ namespace Arcanum
 			StatValue<int> _Willpower;
 			StatValue<int> _Perception;
 			StatValue<int> _Charisma;
+			StatValue<int> _HitPoints;
 		};
 	}
 }

@@ -2,6 +2,7 @@ call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
 
 g++ -std=c++11 -Wall -Wextra -pedantic -O2 -o Arcanum_MinGW.exe -static -s    ^
 source\*.cpp             ^
+source\Allocators\*.cpp  ^
 source\Core\*.cpp        ^
 source\Formats\*.cpp     ^
 source\Forms\*.cpp       ^

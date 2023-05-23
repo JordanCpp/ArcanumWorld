@@ -21,5 +21,10 @@ Sprite* Scenery::Body()
 
 const Point2u& Scenery::Pos()
 {
-	return _Pos;
+	return _MapObject.Pos();
+}
+
+void Scenery::Pos(const Point2u& pos)
+{
+	_MapObject.Pos(pos);
 }

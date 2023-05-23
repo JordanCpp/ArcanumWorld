@@ -19,6 +19,7 @@
 #include <Arcanum/Managers/WidgetManager.hpp>
 #include <Arcanum/Forms/GameMenu.hpp>
 #include <Arcanum/Graphics/Camera.hpp>
+#include <Arcanum/Allocators/ObjectAllocator.hpp>
 
 namespace Arcanum
 {
@@ -34,6 +35,8 @@ namespace Arcanum
 			void Run();
 		private:
 			Settings* _Settings;
+			LDL::Allocators::FixedLinear _OriginalAllocator;
+			Arcanum::Allocators::ObjectAllocator _ObjectAllocator;
 			Managers::PathManager _PathManager;
 			std::string _Title;
 			LDL::Allocators::FixedLinear _ImageAllocator;

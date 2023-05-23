@@ -15,11 +15,11 @@ void LocationPainter::DrawTiles(const Point2u& start)
 {
 	Point2u pos;
 
-	for (size_t i = 0; i < _Location->Tiles().size(); i++)
+	for (size_t i = 0; i < _Location->TileObjects().size(); i++)
 	{
-		pos = _Location->Tiles()[i].Pos();
+		pos = _Location->TileObjects()[i].Pos();
 
-		Texture* texture = _Location->Tiles()[i].Body()->Single()->GetTexture();
+		Texture* texture = _Location->TileObjects()[i].Body()->Single()->GetTexture();
 
 		_Render->Draw(texture, Point2u(start.PosX() + pos.PosX(), start.PosY() + pos.PosY()));
 	}
@@ -27,14 +27,13 @@ void LocationPainter::DrawTiles(const Point2u& start)
 
 void LocationPainter::DrawSceneries(const Point2u& start)
 {
-	Point2u tilePos;
-	Point2u targetPos;
-
-	for (size_t i = 0; i < _Location->Sceneries().size(); i++)
+	for (size_t i = 0; i < _Location->SceneryObjects().size(); i++)
 	{
-		tilePos = _Location->Tiles()[i].Pos();
+		Scenery* object  = _Location->SceneryObjects()[i];
+		size_t   index   = _Location->Index(object->Pos());
+		Point2u  tilePos = _Location->TileObjects()[index].Pos();
 
-		Sprite* sprite = _Location->Sceneries()[i].Body();
+		Sprite* sprite = object->Body();
 
 		if (sprite != nullptr)
 		{

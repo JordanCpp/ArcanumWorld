@@ -39,6 +39,8 @@ add_library(ArcanumLib STATIC
 "source/Objects/Wall.cpp"
 "source/Objects/MapObject.cpp"
 
+"source/Allocators/ObjectAllocator.cpp"
+
 "source/Widgets/Widget.cpp"
 "source/Widgets/Button.cpp"
 "source/Widgets/Form.cpp"

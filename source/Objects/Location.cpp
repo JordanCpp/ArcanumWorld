@@ -1,4 +1,5 @@
 #include <Arcanum/Objects/Location.hpp>
+#include <Arcanum/Objects/LocationLimits.hpp>
 
 using namespace Arcanum::Objects;
 using namespace LDL::Graphics;
@@ -7,8 +8,12 @@ void Location::Reset(const Point2u& size)
 {
     _Size = size;
 
-    _TileObjects.resize(_Size.PosX() * _Size.PosY());
-    _SceneryObjects.resize(_Size.PosX() * _Size.PosY());
+	size_t sz = _Size.PosX() * _Size.PosY();
+
+    _TileObjects.resize(sz);
+	_SceneryTiles.resize(sz);
+
+    _SceneryObjects.reserve(LocationLimits::Sceneries);
 
 	CalculateTiles();
 }
@@ -26,7 +31,7 @@ void Location::CalculateTiles()
 
 			size_t index = Index(x, y);
 			
-			Tiles()[index].Pos(pt);
+			TileObjects()[index].Pos(pt);
 		}
 	}
 }
@@ -36,22 +41,27 @@ size_t Location::Index(size_t x, size_t y)
     return (_Size.PosX() * y) + x;
 }
 
+size_t Location::Index(const Point2u& pos)
+{
+	return Index(pos.PosX(), pos.PosY());
+}
+
 const Point2u& Location::Size()
 {
     return _Size;
 }
 
-std::vector<Tile>& Location::Tiles()
+std::vector<Tile>& Location::TileObjects()
 {
     return _TileObjects;
 }
 
-std::vector<Scenery>& Location::Sceneries()
+std::vector<Scenery*>& Location::SceneryObjects()
 {
     return _SceneryObjects;
 }
 
-Scenery& Location::GetScenery(size_t x, size_t y)
+Scenery* Location::GetScenery(size_t x, size_t y)
 {
 	return _SceneryObjects[Index(x, y)];
 }
