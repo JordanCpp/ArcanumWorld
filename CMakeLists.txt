@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.8)
 
-include_directories("dependencies/LDL/include")
-link_directories("dependencies/LDL/lib")
+include(ExternalProject)
+ExternalProject_Add(LDL_lib
+  GIT_REPOSITORY    https://github.com/JordanCpp/Lib-LDL.git
+  GIT_TAG           master
+)
+
+
+add_definitions(-DLDL_STATIC_LIBRARY)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/LDL_lib-prefix/src/LDL_lib/include)
+link_directories   (${CMAKE_CURRENT_BINARY_DIR}/LDL_lib-prefix/src/LDL_lib-build/)
 
 include_directories("include")
 
@@ -56,6 +65,6 @@ add_library(ArcanumLib STATIC
 
 add_executable(Arcanum "source/main.cpp")
 
-target_link_libraries(Arcanum ArcanumLib LDL)
+target_link_libraries(Arcanum ArcanumLib LDL opengl32 winmm)
 
 add_subdirectory("test")

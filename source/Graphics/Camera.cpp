@@ -31,22 +31,22 @@ void Camera::Handle(Event& event)
 	size_t x = Pos().PosX();
 	size_t y = Pos().PosY();
 
-	if (event.IsKeyPresed(KeyboardKey::W))
+	if (event.IsKeyPressed(KeyboardKey::W))
 	{
 		y += _Step;
 	}
 
-	if (event.IsKeyPresed(KeyboardKey::S))
+	if (event.IsKeyPressed(KeyboardKey::S))
 	{
 		y -= _Step;
 	}
 
-	if (event.IsKeyPresed(KeyboardKey::A))
+	if (event.IsKeyPressed(KeyboardKey::A))
 	{
 		x += _Step;
 	}
 
-	if (event.IsKeyPresed(KeyboardKey::D))
+	if (event.IsKeyPressed(KeyboardKey::D))
 	{
 		x -= _Step;
 	}

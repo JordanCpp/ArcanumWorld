@@ -73,15 +73,17 @@ void Engine::Update()
 void Engine::Run()
 {
 	Event report = { 0 };
-
-	while (_Window.GetEvent(report))
+	while (_Window.Running())
 	{
 		_FpsLimiter.Mark();
 		_FpsCounter.Start();
 
-		if (report.Type == IsQuit)
+		while (_Window.GetEvent(report))
 		{
-			_Window.StopEvent();
+			if (report.Type == IsQuit)
+			{
+				_Window.StopEvent();
+			}
 		}
 
 		_Render.Begin();
@@ -100,5 +102,7 @@ void Engine::Run()
 		_FpsLimiter.Throttle();
 
 		ShowFps();
+
+		_Window.PollEvents();
 	}
 }
