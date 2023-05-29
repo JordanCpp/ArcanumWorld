@@ -3,6 +3,7 @@
 using namespace LDL::Graphics;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Widgets;
+using namespace LDL::Math;
 
 WidgetManager::WidgetManager(Render* render) :
 	_Render(render)
@@ -15,7 +16,7 @@ WidgetManager::~WidgetManager()
 		delete _Widgets[i];
 }
 
-Button* WidgetManager::GetButton(const Point2u& pos, const Point2u& size)
+Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
 {
 	auto result = new Button(_Render, pos, size);
 
@@ -26,7 +27,7 @@ Button* WidgetManager::GetButton(const Point2u& pos, const Point2u& size)
 
 Form* WidgetManager::GetForm()
 {
-	auto result = new Form(_Render, Point2u(0,0), _Render->Size());
+	auto result = new Form(_Render, Vec2u(0,0), _Render->Size());
 
 	_Widgets.push_back(result);
 

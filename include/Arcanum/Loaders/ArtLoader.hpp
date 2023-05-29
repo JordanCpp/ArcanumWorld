@@ -2,7 +2,7 @@
 #define Arcanum_Loaders_ArtLoader_hpp
 
 #include <Arcanum/Formats/Art.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace Arcanum
 {
@@ -12,17 +12,17 @@ namespace Arcanum
 		{
 		public:
 			void Load(const std::string& path);
-			const LDL::Graphics::Point2u& Size();
-			const LDL::Graphics::Point2u& Offset();
-			const LDL::Graphics::Point2u& Delta();
+			const LDL::Math::Vec2u& Size();
+			const LDL::Math::Vec2u& Offset();
+			const LDL::Math::Vec2u& Delta();
 			uint8_t* Pixels();
 			size_t Frames();
 			void Frame(size_t index);
 		private:
 			Formats::ArtFile _File;
-			LDL::Graphics::Point2u _Size;
-			LDL::Graphics::Point2u _Offset;
-			LDL::Graphics::Point2u _Delta;
+			LDL::Math::Vec2u _Size;
+			LDL::Math::Vec2u _Offset;
+			LDL::Math::Vec2u _Delta;
 			std::vector<uint8_t> _Pixels;
 		};
 	}

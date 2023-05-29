@@ -1,7 +1,7 @@
 #include <Arcanum/Game/Settings.hpp>
 
 using namespace Arcanum::Game;
-using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 Settings::Settings() : 
 	_Fps(0)
@@ -28,12 +28,12 @@ void Settings::Title(const std::string& title)
 	_Title = title;
 }
 
-const Point2u& Settings::Size()
+const Vec2u& Settings::Size()
 {
 	return _Size;
 }
 
-void Settings::Size(const Point2u& size)
+void Settings::Size(const Vec2u& size)
 {
 	_Size = size;
 }

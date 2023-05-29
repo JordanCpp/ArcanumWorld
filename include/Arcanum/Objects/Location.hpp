@@ -13,17 +13,17 @@ namespace Arcanum
 		class Location
 		{
 		public:
-			void Reset(const LDL::Graphics::Point2u& size);
+			void Reset(const LDL::Math::Vec2u& size);
 			void CalculateTiles();
 			size_t Index(size_t x, size_t y);
-			size_t Index(const LDL::Graphics::Point2u& pos);
-			const LDL::Graphics::Point2u& Size();
+			size_t Index(const LDL::Math::Vec2u& pos);
+			const LDL::Math::Vec2u& Size();
 			std::vector<Tile>& TileObjects();
 			std::vector<Scenery*>& SceneryObjects();
 			Scenery* GetScenery(size_t x, size_t y);
 		private:
 			LDL::Graphics::Isometric _Isometric;
-			LDL::Graphics::Point2u   _Size;
+			LDL::Math::Vec2u         _Size;
 
 			std::vector<Tile>     _TileObjects;
 			std::vector<Scenery*> _SceneryObjects;

@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace Arcanum
 {
@@ -12,12 +12,12 @@ namespace Arcanum
 		class Image
 		{
 		public:
-			Image(LDL::Graphics::RenderContext* renderContext, const LDL::Graphics::Point2u& size, uint8_t* pixels, const LDL::Graphics::Point2u& offset, const LDL::Graphics::Point2u& delta);
+			Image(LDL::Graphics::RenderContext* renderContext, const LDL::Math::Vec2u& size, uint8_t* pixels, const LDL::Math::Vec2u& offset, const LDL::Math::Vec2u& delta);
 			LDL::Graphics::Texture* GetTexture();
 		private:
 			LDL::Graphics::Texture _Texture;
-			LDL::Graphics::Point2u _Offset;
-			LDL::Graphics::Point2u _Delta;
+			LDL::Math::Vec2u _Offset;
+			LDL::Math::Vec2u _Delta;
 		};
 	}
 }

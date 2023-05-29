@@ -4,7 +4,6 @@
 #include <Arcanum/Graphics/Sprite.hpp>
 #include <Arcanum/Objects/MapObject.hpp>
 
-
 namespace Arcanum
 {
 	namespace Objects
@@ -15,8 +14,8 @@ namespace Arcanum
 			Scenery();
 			void Init(Graphics::Sprite* sprite);
 			Graphics::Sprite* Body();
-			const LDL::Graphics::Point2u& Pos();
-			void Pos(const LDL::Graphics::Point2u& pos);
+			const LDL::Math::Vec2u& Pos();
+			void Pos(const LDL::Math::Vec2u& pos);
 		private:
 			MapObject _MapObject;
 			Graphics::Sprite* _Body;

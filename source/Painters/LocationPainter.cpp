@@ -1,6 +1,8 @@
 #include <Arcanum/Painters/LocationPainter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
+
 using namespace Arcanum::Painters;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;
@@ -11,9 +13,9 @@ LocationPainter::LocationPainter(Render* render, Location* location) :
 {
 }
 
-void LocationPainter::DrawTiles(const Point2u& start)
+void LocationPainter::DrawTiles(const Vec2u& start)
 {
-	Point2u pos;
+	Vec2u pos;
 
 	for (size_t i = 0; i < _Location->TileObjects().size(); i++)
 	{
@@ -21,30 +23,30 @@ void LocationPainter::DrawTiles(const Point2u& start)
 
 		Texture* texture = _Location->TileObjects()[i].Body()->Single()->GetTexture();
 
-		_Render->Draw(texture, Point2u(start.PosX() + pos.PosX(), start.PosY() + pos.PosY()));
+		_Render->Draw(texture, Vec2u(start.x + pos.x, start.y + pos.y));
 	}
 }
 
-void LocationPainter::DrawSceneries(const Point2u& start)
+void LocationPainter::DrawSceneries(const Vec2u& start)
 {
 	for (size_t i = 0; i < _Location->SceneryObjects().size(); i++)
 	{
 		Scenery* object  = _Location->SceneryObjects()[i];
 		size_t   index   = _Location->Index(object->Pos());
-		Point2u  tilePos = _Location->TileObjects()[index].Pos();
+		Vec2u  tilePos   = _Location->TileObjects()[index].Pos();
 
 		Sprite* sprite = object->Body();
 
 		if (sprite != nullptr)
 		{
-			size_t h = sprite->Single()->GetTexture()->Size().PosY();
+			size_t h = sprite->Single()->GetTexture()->Size().y;
 
-			_Render->Draw(sprite->Single()->GetTexture(), Point2u(start.PosX() + tilePos.PosX(), start.PosY() + tilePos.PosY() - h));
+			_Render->Draw(sprite->Single()->GetTexture(), Vec2u(start.x + tilePos.x, start.y + tilePos.y - h));
 		}
 	}
 }
 
-void LocationPainter::Draw(const Point2u& start)
+void LocationPainter::Draw(const Vec2u& start)
 {
 	DrawTiles(start);
 	DrawSceneries(start);

@@ -3,12 +3,13 @@
 
 using namespace Arcanum::Objects;
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-void Location::Reset(const Point2u& size)
+void Location::Reset(const Vec2u& size)
 {
     _Size = size;
 
-	size_t sz = _Size.PosX() * _Size.PosY();
+	size_t sz = _Size.x * _Size.y;
 
     _TileObjects.resize(sz);
 	_SceneryTiles.resize(sz);
@@ -20,14 +21,14 @@ void Location::Reset(const Point2u& size)
 
 void Location::CalculateTiles()
 {
-	for (size_t x = 0; x < Size().PosX(); x++)
+	for (size_t x = 0; x < Size().x; x++)
 	{
-		for (size_t y = 0; y < Size().PosY(); y++)
+		for (size_t y = 0; y < Size().y; y++)
 		{
 			size_t dx = y * Tile::Width / 2;
 			size_t dy = x * Tile::Height;
 
-			Point2u pt = _Isometric.CartesianToIsometric(Point2u(dx, dy));
+			Vec2u pt = _Isometric.CartesianToIsometric(Vec2u(dx, dy));
 
 			size_t index = Index(x, y);
 			
@@ -38,15 +39,15 @@ void Location::CalculateTiles()
 
 size_t Location::Index(size_t x, size_t y)
 {
-    return (_Size.PosX() * y) + x;
+    return (_Size.x * y) + x;
 }
 
-size_t Location::Index(const Point2u& pos)
+size_t Location::Index(const Vec2u& pos)
 {
-	return Index(pos.PosX(), pos.PosY());
+	return Index(pos.x, pos.y);
 }
 
-const Point2u& Location::Size()
+const Vec2u& Location::Size()
 {
     return _Size;
 }

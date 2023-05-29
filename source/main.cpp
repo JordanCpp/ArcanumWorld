@@ -3,7 +3,7 @@
 #include <Arcanum/Game/Settings.hpp>
 
 using namespace Arcanum::Game;
-using namespace LDL::Graphics;
+using namespace LDL::Math;
 using namespace LDL::Core;
 
 int main()
@@ -14,7 +14,7 @@ int main()
 
 		settings.Path("data/");
 		settings.Title("Arcanum World");
-		settings.Size(Point2u(800, 600));
+		settings.Size(Vec2u(800, 600));
 		settings.Fps(60);
 
 		Engine engine(&settings);

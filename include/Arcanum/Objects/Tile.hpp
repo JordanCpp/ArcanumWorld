@@ -17,12 +17,12 @@ namespace Arcanum
 			};
 
 			Tile();
-			const LDL::Graphics::Point2u& Pos();
-			void Pos(const LDL::Graphics::Point2u& pos);
+			const LDL::Math::Vec2u& Pos();
+			void Pos(const LDL::Math::Vec2u& pos);
 			void Init(Graphics::Sprite* sprite);
 			Graphics::Sprite* Body();
 		private:
-			LDL::Graphics::Point2u _Pos;
+			LDL::Math::Vec2u _Pos;
 			Graphics::Sprite* _Body;
 		};
 	}

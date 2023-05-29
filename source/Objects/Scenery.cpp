@@ -3,6 +3,7 @@
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 Scenery::Scenery() :
 	_Body(nullptr)
@@ -19,12 +20,12 @@ Sprite* Scenery::Body()
 	return _Body;
 }
 
-const Point2u& Scenery::Pos()
+const Vec2u& Scenery::Pos()
 {
 	return _MapObject.Pos();
 }
 
-void Scenery::Pos(const Point2u& pos)
+void Scenery::Pos(const Vec2u& pos)
 {
 	_MapObject.Pos(pos);
 }

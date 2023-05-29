@@ -1,8 +1,8 @@
 #ifndef Arcanum_Graphics_Camera_hpp
 #define Arcanum_Graphics_Camera_hpp
 
-#include <LDL/Graphics/Primitives/Point2u.hpp>
-#include <LDL/Graphics/Primitives/Rect2u.hpp>
+#include <LDL/Math/Vec2.hpp>
+#include <LDL/Graphics/Rect.hpp>
 #include <LDL/Events/Event.hpp>
 
 namespace Arcanum
@@ -12,13 +12,13 @@ namespace Arcanum
 		class Camera
 		{
 		public:
-			Camera(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			const LDL::Graphics::Point2u& Pos();
-			const LDL::Graphics::Point2u& Size();
-			void Move(const LDL::Graphics::Point2u& pos);
+			Camera(const LDL::Math::Vec2u& pos, const LDL::Math::Vec2u& size);
+			const LDL::Math::Vec2u& Pos();
+			const LDL::Math::Vec2u& Size();
+			void Move(const LDL::Math::Vec2u& pos);
 			void Handle(LDL::Events::Event& event);
 		private:
-			LDL::Graphics::Rect2u _Area;
+			LDL::Graphics::Rectu _Area;
 			size_t _Step;
 		};
 	}

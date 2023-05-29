@@ -2,8 +2,9 @@
 
 using namespace Arcanum::Widgets;
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Widget::Widget(Render* render, const Point2u& pos, const Point2u& size) :
+Widget::Widget(Render* render, const Vec2u& pos, const Vec2u& size) :
 	_Render(render),
 	_Area(pos, size)
 {
@@ -13,12 +14,12 @@ Widget::~Widget()
 {
 }
 
-const Point2u Widget::Pos()
+const Vec2u Widget::Pos()
 {
 	return _Area.Pos();
 }
 
-const Point2u Widget::Size()
+const Vec2u Widget::Size()
 {
 	return _Area.Size();
 }

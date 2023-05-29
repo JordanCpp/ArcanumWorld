@@ -1,7 +1,7 @@
 #ifndef Arcanum_Objects_MapObject_hpp
 #define Arcanum_Objects_MapObject_hpp
 
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace Arcanum
 {
@@ -10,10 +10,10 @@ namespace Arcanum
 		class MapObject
 		{
 		public:
-			const LDL::Graphics::Point2u& Pos();
-			void Pos(const LDL::Graphics::Point2u& pos);
+			const LDL::Math::Vec2u& Pos();
+			void Pos(const LDL::Math::Vec2u& pos);
 		private:
-			LDL::Graphics::Point2u _Pos;
+			LDL::Math::Vec2u _Pos;
 
 		};
 	}

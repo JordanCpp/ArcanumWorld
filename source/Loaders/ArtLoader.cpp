@@ -2,24 +2,24 @@
 
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Formats;
-using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 void ArtLoader::Load(const std::string& path)
 {
 	_File.LoadArt(path);
 }
 
-const Point2u& ArtLoader::Size()
+const Vec2u& ArtLoader::Size()
 {
 	return _Size;
 }
 
-const Point2u& ArtLoader::Offset()
+const Vec2u& ArtLoader::Offset()
 {
 	return _Offset;
 }
 
-const Point2u& ArtLoader::Delta()
+const Vec2u& ArtLoader::Delta()
 {
 	return _Delta;
 }
@@ -38,15 +38,15 @@ void ArtLoader::Frame(size_t index)
 {
 	size_t w = _File.frame_data[index].header.width;
 	size_t h = _File.frame_data[index].header.height;
-	_Size = Point2u(w, h);
+	_Size = Vec2u(w, h);
 
 	size_t ow = _File.frame_data[index].header.c_x;
 	size_t oh = _File.frame_data[index].header.c_y;
-	_Offset = Point2u(ow, oh);
+	_Offset = Vec2u(ow, oh);
 
 	size_t dw = _File.frame_data[index].header.d_x;
 	size_t dh = _File.frame_data[index].header.d_y;
-	_Delta = Point2u(dw, dh);
+	_Delta = Vec2u(dw, dh);
 
 	_Pixels.clear();
 	_Pixels.resize(w * h * 4);

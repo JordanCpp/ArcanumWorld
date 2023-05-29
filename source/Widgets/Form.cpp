@@ -2,8 +2,9 @@
 
 using namespace Arcanum::Widgets;
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Form::Form(Render* render, const Point2u& pos, const Point2u& size) :
+Form::Form(Render* render, const Vec2u& pos, const Vec2u& size) :
 	Widget(render, pos, size)
 {
 }
