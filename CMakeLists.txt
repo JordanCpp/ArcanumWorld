@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 
+#Install LDL
+set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
-
-add_subdirectory(dependencies/LDL)
-
+set(LDL_RENDER_OPENGL1 true)
+add_subdirectory(dependencies/LDL/source)
 include_directories(dependencies/LDL/include)
-link_directories   (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
+link_directories (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
 
 include_directories("include")
 
