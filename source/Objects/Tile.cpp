@@ -12,12 +12,12 @@ Tile::Tile() :
 
 const Vec2u& Tile::Pos()
 {
-	return _Pos;
+	return _MapObject.Pos();
 }
 
 void Tile::Pos(const Vec2u& pos)
 {
-	_Pos = pos;
+	_MapObject.Pos(pos);
 }
 
 void Tile::Init(Sprite* sprite)

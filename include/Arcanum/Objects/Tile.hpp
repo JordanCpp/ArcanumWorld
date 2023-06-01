@@ -2,6 +2,7 @@
 #define Arcanum_Objects_Tile_hpp
 
 #include <Arcanum/Graphics/Sprite.hpp>
+#include <Arcanum/Objects/MapObject.hpp>
 
 namespace Arcanum
 {
@@ -22,7 +23,7 @@ namespace Arcanum
 			void Init(Graphics::Sprite* sprite);
 			Graphics::Sprite* Body();
 		private:
-			LDL::Math::Vec2u _Pos;
+			MapObject _MapObject;
 			Graphics::Sprite* _Body;
 		};
 	}

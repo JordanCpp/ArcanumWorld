@@ -18,6 +18,7 @@ add_library(ArcanumLib STATIC
 "source/Managers/SpriteManager.cpp"
 "source/Managers/WidgetManager.cpp"
 "source/Managers/ScriptManager.cpp"
+"source/Managers/ObjectManager.cpp"
 
 "source/Formats/Art.cpp"
 "source/Formats/Msg.cpp"
@@ -33,10 +34,13 @@ add_library(ArcanumLib STATIC
 "source/Readers/MesReader.cpp"
 "source/Readers/SecReader.cpp"
 
+"source/Writters/XmlWritter.cpp"
+
 "source/Core/RuntimeError.cpp"
 
 "source/Objects/Tile.cpp"
 "source/Objects/Critter.cpp"
+"source/Objects/LocationData.cpp"
 "source/Objects/Location.cpp"
 "source/Objects/Scenery.cpp"
 "source/Objects/Script.cpp"
@@ -60,7 +64,9 @@ add_library(ArcanumLib STATIC
 "source/Scripts/PlayerScript.cpp")
 
 add_executable(Arcanum "source/main.cpp")
+target_link_libraries(Arcanum ArcanumLib LDL)
 
-target_link_libraries(Arcanum ArcanumLib LDL opengl32 winmm)
+add_executable(GenMap "source/GenMap.cpp")
+target_link_libraries(GenMap ArcanumLib LDL)
 
 add_subdirectory("test")

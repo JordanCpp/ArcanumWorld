@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Isometric.hpp>
-#include <Arcanum/Objects/Location.hpp>
+#include <Arcanum/Objects/LocationData.hpp>
 
 namespace Arcanum
 {
@@ -12,13 +12,13 @@ namespace Arcanum
         class LocationPainter
         {
         public:
-            LocationPainter(LDL::Graphics::Render* render, Objects::Location* location);
+            LocationPainter(LDL::Graphics::Render* render, Objects::LocationData* location);
             void DrawTiles(const LDL::Math::Vec2u& start);
             void DrawSceneries(const LDL::Math::Vec2u& start);
             void Draw(const LDL::Math::Vec2u& start);
         private:
             LDL::Graphics::Render*   _Render;
-            Objects::Location* _Location;
+            Objects::LocationData* _Location;
             LDL::Graphics::Isometric _Isometric;
         };
     }

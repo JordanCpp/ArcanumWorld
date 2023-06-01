@@ -20,6 +20,7 @@
 #include <Arcanum/Forms/GameMenu.hpp>
 #include <Arcanum/Graphics/Camera.hpp>
 #include <Arcanum/Allocators/ObjectAllocator.hpp>
+#include <Arcanum/Managers/ObjectManager.hpp>
 
 namespace Arcanum
 {
@@ -52,10 +53,11 @@ namespace Arcanum
 			Readers::ByteReader _ByteReader;
 			Readers::SecReader _SecReader;
 			Painters::LocationPainter _LocationPainter;
-			Objects::Location _Location;
+			Objects::LocationData _LocationData;
 			Managers::WidgetManager _WidgetManager;
 			Forms::GameMenu _GameMenu;
 			Graphics::Camera _Camera;
+			Managers::ObjectManager _ObjectManager;
 		};
 	}
 }

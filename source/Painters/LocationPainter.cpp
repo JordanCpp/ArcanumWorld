@@ -7,7 +7,7 @@ using namespace Arcanum::Painters;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;
 
-LocationPainter::LocationPainter(Render* render, Location* location) :
+LocationPainter::LocationPainter(Render* render, LocationData* location) :
 	_Render(render),
 	_Location(location)
 {
@@ -31,17 +31,20 @@ void LocationPainter::DrawSceneries(const Vec2u& start)
 {
 	for (size_t i = 0; i < _Location->SceneryObjects().size(); i++)
 	{
-		Scenery* object  = _Location->SceneryObjects()[i];
-		size_t   index   = _Location->Index(object->Pos());
-		Vec2u  tilePos   = _Location->TileObjects()[index].Pos();
+		Scenery* object = _Location->SceneryObjects()[i];
+		size_t   index  = _Location->Index(object->Pos());
+		Vec2u    tile   = _Location->TileObjects()[index].Pos();
 
 		Sprite* sprite = object->Body();
 
 		if (sprite != nullptr)
 		{
-			size_t h = sprite->Single()->GetTexture()->Size().y;
+			size_t x = sprite->Single()->Offset().x;
+			size_t y = sprite->Single()->Offset().y;
 
-			_Render->Draw(sprite->Single()->GetTexture(), Vec2u(start.x + tilePos.x, start.y + tilePos.y - h));
+			Vec2u center = Vec2u(tile.x + Tile::Width / 2, tile.y + Tile::Height / 2);
+
+			_Render->Draw(sprite->Single()->GetTexture(), Vec2u(start.x + center.x - x, start.y + center.y - y));
 		}
 	}
 }

@@ -4,21 +4,38 @@ using namespace LDL::Allocators;
 using namespace Arcanum::Allocators;
 using namespace Arcanum::Objects;
 
-ObjectAllocator::ObjectAllocator(size_t bytes, LDL::Allocators::Allocator* allocator) :
-	_Allocator(bytes, allocator)
+Wall* ObjectAllocator::NewWall()
 {
+	Wall* result = _WallPool.New();
+
+	return new(result) Wall;
 }
 
-Scenery* ObjectAllocator::GetScenery()
+void ObjectAllocator::Delete(Wall* object)
 {
-	void * p = _Allocator.Allocate(sizeof(Scenery));
-
-	return new(p) Scenery;
+	_WallPool.Delete(object);
 }
 
-Critter* ObjectAllocator::GetCritter()
+Scenery* ObjectAllocator::NewScenery()
 {
-	void* p = _Allocator.Allocate(sizeof(Critter));
+	Scenery* result = _SceneryPool.New();
 
-	return new(p) Critter;
+	return new(result) Scenery;
+}
+
+void ObjectAllocator::Delete(Scenery* object)
+{
+	_SceneryPool.Delete(object);
+}
+
+Critter* ObjectAllocator::NewCritter()
+{
+	Critter* result = _CritterPool.New();
+
+	return new(result) Critter;
+}
+
+void ObjectAllocator::Delete(Critter* object)
+{
+	_CritterPool.Delete(object);
 }

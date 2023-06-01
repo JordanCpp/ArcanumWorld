@@ -15,3 +15,13 @@ Texture* Image::GetTexture()
 {
 	return &_Texture;
 }
+
+const Vec2u& Image::Offset()
+{
+	return _Offset;
+}
+
+const Vec2u& Image::Delta()
+{
+	return _Delta;
+}

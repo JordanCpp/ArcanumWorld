@@ -14,7 +14,7 @@ int main()
 
 		settings.Path("data/");
 		settings.Title("Arcanum World");
-		settings.Size(Vec2u(800, 600));
+		settings.Size(Vec2u(1024, 768));
 		settings.Fps(60);
 
 		Engine engine(&settings);
