@@ -27,7 +27,8 @@ Engine::Engine(Settings* settings) :
 	_WidgetManager(&_Render),
 	_GameMenu(&_Render),
 	_Camera(Vec2u(400, 100), _Render.Size()),
-	_ObjectManager(&_ObjectAllocator, &_SpriteManager)
+	_ObjectManager(&_ObjectAllocator, &_SpriteManager),
+	_Location(&_LocationData, &_ObjectManager, &_LocationPainter, &_SpriteManager)
 {
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
@@ -35,25 +36,17 @@ Engine::Engine(Settings* settings) :
 
 	_LocationData.Reset(Vec2u(sz, sz));
 	
-	for (size_t i = 0; i < _LocationData.Size().x * _LocationData.Size().y; i++)
+	for (size_t x = 0; x < _LocationData.Size().x; x++)
 	{
-		_LocationData.TileObjects()[i].Init(_SpriteManager.GetTile("grsbse0c.ART"));
+		for (size_t y = 0; y < _LocationData.Size().y; y++)
+		{
+			_Location.NewTile(Vec2u(x, y), "grsbse0c.ART");
+		}
 	}
 
-	Scenery* scenery = nullptr;
-
-	scenery = _ObjectManager.NewScenery("savanna_tree02.ART");
-	scenery->Pos(Vec2u(3, 7));
-	_LocationData.Append(scenery);
-
-	scenery = _ObjectManager.NewScenery("engine.ART");
-	scenery->Pos(Vec2u(6, 5));
-	_LocationData.Append(scenery);
-
-	scenery = _ObjectManager.NewScenery("ArmorDisplay2.ART");
-	scenery->Pos(Vec2u(0, 0));
-	_LocationData.Append(scenery);
-	
+	_Location.NewScenery(Vec2u(3, 7), "savanna_tree02.ART");
+	_Location.NewScenery(Vec2u(6, 5), "engine.ART");
+	_Location.NewScenery(Vec2u(0, 0), "ArmorDisplay2.ART");
 }
 
 void Engine::ShowFps()
@@ -77,6 +70,7 @@ void Engine::Update()
 void Engine::Run()
 {
 	Event report = { 0 };
+
 	while (_Window.Running())
 	{
 		_FpsLimiter.Mark();
@@ -84,7 +78,7 @@ void Engine::Run()
 
 		while (_Window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				_Window.StopEvent();
 			}
@@ -95,7 +89,7 @@ void Engine::Run()
 		_Render.Color(Color(0, 0, 0));
 		_Render.Clear();
 
-		_LocationPainter.Draw(_Camera.Pos());
+		_Location.Draw(_Camera.Pos());
 
 		_GameMenu.Draw();
 

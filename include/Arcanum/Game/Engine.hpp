@@ -21,6 +21,7 @@
 #include <Arcanum/Graphics/Camera.hpp>
 #include <Arcanum/Allocators/ObjectAllocator.hpp>
 #include <Arcanum/Managers/ObjectManager.hpp>
+#include <Arcanum/Objects/Location.hpp>
 
 namespace Arcanum
 {
@@ -58,6 +59,7 @@ namespace Arcanum
 			Forms::GameMenu _GameMenu;
 			Graphics::Camera _Camera;
 			Managers::ObjectManager _ObjectManager;
+			Objects::Location _Location;
 		};
 	}
 }
