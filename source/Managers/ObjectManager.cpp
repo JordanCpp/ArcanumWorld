@@ -17,3 +17,8 @@ Scenery* ObjectManager::NewScenery(const std::string& name)
 
 	return result;
 }
+
+void ObjectManager::NewTile(Tile& object, const std::string& name)
+{
+	object.Init(_SpriteManager->GetTile(name));
+}

@@ -4,6 +4,18 @@ using namespace LDL::Allocators;
 using namespace Arcanum::Allocators;
 using namespace Arcanum::Objects;
 
+Tile* ObjectAllocator::NewTile()
+{
+	Tile* result = _TilePool.New();
+
+	return new(result) Tile;
+}
+
+void ObjectAllocator::Delete(Tile* object)
+{
+	_TilePool.Delete(object);
+}
+
 Wall* ObjectAllocator::NewWall()
 {
 	Wall* result = _WallPool.New();

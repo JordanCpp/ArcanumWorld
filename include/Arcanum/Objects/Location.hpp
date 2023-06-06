@@ -4,6 +4,7 @@
 #include <Arcanum/Objects/LocationData.hpp>
 #include <Arcanum/Managers/ObjectManager.hpp>
 #include <Arcanum/Painters/LocationPainter.hpp>
+#include <Arcanum/Objects/LocationCreator.hpp>
 
 namespace Arcanum
 {
@@ -12,15 +13,14 @@ namespace Arcanum
 		class Location
 		{
 		public:
-			Location(LocationData* locationData, Managers::ObjectManager* objectManager, Painters::LocationPainter* locationPainter, Managers::SpriteManager * spriteManager);
+			Location(LocationData* locationData, LocationCreator* locationCreator, Painters::LocationPainter* locationPainter);
 			void Draw(const LDL::Math::Vec2u& start);
 			Scenery* NewScenery(const LDL::Math::Vec2u& pos, const std::string& path);
 			Tile* NewTile(const LDL::Math::Vec2u& pos, const std::string& path);
 		private:
 			LocationData* _LocationData;
-			Managers::ObjectManager* _ObjectManager;
+			LocationCreator* _LocationCreator;
 			Painters::LocationPainter* _LocationPainter;
-			Managers::SpriteManager* _SpriteManager;
 		};
 	}
 }

@@ -29,18 +29,24 @@ add_library(ArcanumLib STATIC
 "source/Graphics/Camera.cpp"
 
 "source/Loaders/ArtLoader.cpp"
+"source/Loaders/LocationLoader.cpp"
+"source/Loaders/SettingsLoader.cpp"
 
 "source/Readers/ByteReader.cpp"
 "source/Readers/MesReader.cpp"
 "source/Readers/SecReader.cpp"
+"source/Readers/XmlReader.cpp"
 
 "source/Writters/XmlWritter.cpp"
+
+"source/Savers/LocationSaver.cpp"
 
 "source/Core/RuntimeError.cpp"
 
 "source/Objects/Tile.cpp"
 "source/Objects/Critter.cpp"
 "source/Objects/LocationData.cpp"
+"source/Objects/LocationCreator.cpp"
 "source/Objects/Location.cpp"
 "source/Objects/Scenery.cpp"
 "source/Objects/Script.cpp"

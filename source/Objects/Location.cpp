@@ -3,11 +3,10 @@
 using namespace Arcanum::Objects;
 using namespace LDL::Math;
 
-Location::Location(LocationData* locationData, Managers::ObjectManager* objectManager, Painters::LocationPainter* locationPainter, Managers::SpriteManager* spriteManager) :
+Location::Location(LocationData* locationData, LocationCreator* locationCreator, Painters::LocationPainter* locationPainter) :
 	_LocationData(locationData),
-	_ObjectManager(objectManager),
-	_LocationPainter(locationPainter),
-	_SpriteManager(spriteManager)
+	_LocationCreator(locationCreator),
+	_LocationPainter(locationPainter)
 {
 }
 
@@ -19,22 +18,14 @@ void Location::Draw(const Vec2u& start)
 
 Scenery* Location::NewScenery(const Vec2u& pos, const std::string& path)
 {
-	Scenery * result = _ObjectManager->NewScenery(path);
-
-	result->Pos(pos);
-
-	_LocationData->Append(result);
-
-	return result;
+	return _LocationCreator->NewScenery(pos, path);
 }
 
-Tile* Location::NewTile(const LDL::Math::Vec2u& pos, const std::string& path)
+Tile* Location::NewTile(const Vec2u& pos, const std::string& path)
 {
 	size_t index = _LocationData->Index(pos);
 
-	Tile* result = &_LocationData->TileObjects()[index];
+	_LocationCreator->NewTile(index, path);
 
-	result->Init(_SpriteManager->GetTile(path));
-
-	return result;
+	return &_LocationData->TileObjects()[index];
 }

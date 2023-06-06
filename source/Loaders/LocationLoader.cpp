@@ -1,0 +1,61 @@
+#include <Arcanum/Loaders/LocationLoader.hpp>
+
+using namespace LDL::Math;
+using namespace Arcanum::Loaders;
+
+LocationLoader::LocationLoader(Readers::XmlReader* xmlReader, Objects::LocationCreator* locationCreator) :
+	_XmlReader(xmlReader),
+	_LocationCreator(locationCreator),
+	_SceneryCount(0)
+{
+}
+
+void LocationLoader::Reset(const std::string& path)
+{
+	_XmlReader->Reset(path);
+
+	_XmlReader->NextOpening("Info");
+
+	_XmlReader->NextNode("Width");
+	size_t width = _XmlReader->ValueInt();
+
+	_XmlReader->NextNode("Heigth");
+	size_t heigth = _XmlReader->ValueInt();
+
+	_XmlReader->NextNode("Sceneries");
+	_SceneryCount = _XmlReader->ValueInt();
+
+	_XmlReader->NextClosing("Info");
+
+	_XmlReader->NextOpening("Tiles");
+
+	for (size_t i = 0; i < width * heigth; i++)
+	{
+		_XmlReader->NextOpening("Tile");
+		_XmlReader->NextNode("Image");
+		_LocationCreator->NewTile(i, _XmlReader->Value());
+		_XmlReader->NextClosing("Tile");
+	}
+
+	_XmlReader->NextClosing("Sceneries");
+
+	_XmlReader->NextOpening("Tiles");
+
+	for (size_t i = 0; i < _SceneryCount; i++)
+	{
+		_XmlReader->NextOpening("Scenery");
+
+		_XmlReader->NextNode("PosX");
+		size_t x = _XmlReader->ValueInt();
+
+		_XmlReader->NextNode("PosY");
+		size_t y = _XmlReader->ValueInt();
+
+		_XmlReader->NextNode("Body");
+		_LocationCreator->NewScenery(Vec2u(x, y), _XmlReader->Value());
+
+		_XmlReader->NextClosing("Scenery");
+	}
+
+	_XmlReader->NextClosing("Sceneries");
+}

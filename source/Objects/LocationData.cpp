@@ -101,9 +101,14 @@ std::vector<Wall*>& LocationData::WallTiles()
 	return _WallTiles;
 }
 
-Scenery* LocationData::GetScenery(size_t x, size_t y)
+Scenery* LocationData::GetScenery(const Vec2u& pos)
 {
-	return _SceneryObjects.at(Index(x, y));
+	return _SceneryObjects.at(Index(pos.x, pos.y));
+}
+
+Tile* LocationData::GetTile(const Vec2u& pos)
+{
+	return &_TileObjects.at(Index(pos.x, pos.y));
 }
 
 void LocationData::Append(Scenery* object)

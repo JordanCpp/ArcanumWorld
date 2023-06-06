@@ -28,7 +28,9 @@ Engine::Engine(Settings* settings) :
 	_GameMenu(&_Render),
 	_Camera(Vec2u(400, 100), _Render.Size()),
 	_ObjectManager(&_ObjectAllocator, &_SpriteManager),
-	_Location(&_LocationData, &_ObjectManager, &_LocationPainter, &_SpriteManager)
+	_LocationCreator(&_LocationData, &_ObjectManager),
+	_Location(&_LocationData, &_LocationCreator, &_LocationPainter),
+	_LocationSaver(&_XmlWritter)
 {
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
@@ -47,6 +49,8 @@ Engine::Engine(Settings* settings) :
 	_Location.NewScenery(Vec2u(3, 7), "savanna_tree02.ART");
 	_Location.NewScenery(Vec2u(6, 5), "engine.ART");
 	_Location.NewScenery(Vec2u(0, 0), "ArmorDisplay2.ART");
+
+	_LocationSaver.Save(&_LocationData, "TestLocation.xml");
 }
 
 void Engine::ShowFps()

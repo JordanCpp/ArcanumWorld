@@ -27,7 +27,10 @@ namespace Arcanum
 			std::vector<Critter*>& CritterTiles();
 			std::vector<Wall*>& WallObjects();
 			std::vector<Wall*>& WallTiles();
-			Scenery* GetScenery(size_t x, size_t y);
+
+			Scenery* GetScenery(const LDL::Math::Vec2u& pos);
+			Tile* GetTile(const LDL::Math::Vec2u& pos);
+
 			void Append(Scenery* object);
 		private:
 			LDL::Graphics::Isometric _Isometric;

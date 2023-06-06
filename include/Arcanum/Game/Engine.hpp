@@ -22,6 +22,8 @@
 #include <Arcanum/Allocators/ObjectAllocator.hpp>
 #include <Arcanum/Managers/ObjectManager.hpp>
 #include <Arcanum/Objects/Location.hpp>
+#include <Arcanum/Savers/LocationSaver.hpp>
+#include <Arcanum/Objects/LocationCreator.hpp>
 
 namespace Arcanum
 {
@@ -59,7 +61,10 @@ namespace Arcanum
 			Forms::GameMenu _GameMenu;
 			Graphics::Camera _Camera;
 			Managers::ObjectManager _ObjectManager;
+			Objects::LocationCreator _LocationCreator;
 			Objects::Location _Location;
+			Writters::XmlWritter _XmlWritter;
+			Savers::LocationSaver _LocationSaver;
 		};
 	}
 }
