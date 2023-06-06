@@ -25,6 +25,7 @@ namespace Arcanum
                 Data
             };
 
+            XmlReader();
             XmlReader(const std::string& name, size_t mode_open = XmlReader::FromFile);
             ~XmlReader();
             void Reset(const std::string& name, size_t mode_open = XmlReader::FromFile);

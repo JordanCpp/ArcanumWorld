@@ -9,6 +9,11 @@ LocationCreator::LocationCreator(LocationData* locationData, ObjectManager* obje
 {
 }
 
+void LocationCreator::Reset(const LDL::Math::Vec2u& size)
+{
+	_LocationData->Reset(size);
+}
+
 void LocationCreator::NewTile(size_t index, const std::string& path)
 {
 	_ObjectManager->NewTile(_LocationData->TileObjects()[index], path);

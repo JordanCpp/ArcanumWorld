@@ -22,6 +22,8 @@ void LocationLoader::Reset(const std::string& path)
 	_XmlReader->NextNode("Heigth");
 	size_t heigth = _XmlReader->ValueInt();
 
+	_LocationCreator->Reset(Vec2u(width, heigth));
+
 	_XmlReader->NextNode("Sceneries");
 	_SceneryCount = _XmlReader->ValueInt();
 
@@ -32,23 +34,24 @@ void LocationLoader::Reset(const std::string& path)
 	for (size_t i = 0; i < width * heigth; i++)
 	{
 		_XmlReader->NextOpening("Tile");
-		_XmlReader->NextNode("Image");
+		_XmlReader->NextNode("Body");
 		_LocationCreator->NewTile(i, _XmlReader->Value());
 		_XmlReader->NextClosing("Tile");
 	}
 
-	_XmlReader->NextClosing("Sceneries");
+	_XmlReader->NextClosing("Tiles");
 
-	_XmlReader->NextOpening("Tiles");
+
+	_XmlReader->NextOpening("Sceneries");
 
 	for (size_t i = 0; i < _SceneryCount; i++)
 	{
 		_XmlReader->NextOpening("Scenery");
 
-		_XmlReader->NextNode("PosX");
+		_XmlReader->NextNode("X");
 		size_t x = _XmlReader->ValueInt();
 
-		_XmlReader->NextNode("PosY");
+		_XmlReader->NextNode("Y");
 		size_t y = _XmlReader->ValueInt();
 
 		_XmlReader->NextNode("Body");

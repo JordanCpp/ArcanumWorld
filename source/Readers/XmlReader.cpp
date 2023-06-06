@@ -2,6 +2,10 @@
 
 using namespace Arcanum::Readers;
 
+XmlReader::XmlReader()
+{
+}
+
 XmlReader::XmlReader(const std::string & name, size_t mode_open)
 {
     Reset(name, mode_open);

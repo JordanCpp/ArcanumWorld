@@ -14,7 +14,6 @@ namespace Arcanum
 			void Pos(const LDL::Math::Vec2u& pos);
 		private:
 			LDL::Math::Vec2u _Pos;
-
 		};
 	}
 }

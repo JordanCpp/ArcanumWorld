@@ -30,8 +30,11 @@ Engine::Engine(Settings* settings) :
 	_ObjectManager(&_ObjectAllocator, &_SpriteManager),
 	_LocationCreator(&_LocationData, &_ObjectManager),
 	_Location(&_LocationData, &_LocationCreator, &_LocationPainter),
-	_LocationSaver(&_XmlWritter)
+	_LocationSaver(&_XmlWritter),
+	_LocationLoader(&_XmlReader, &_LocationCreator)
 {
+	_LocationLoader.Reset("Empty.xml");
+	/*
 	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
 
 	size_t sz = 10;
@@ -51,6 +54,7 @@ Engine::Engine(Settings* settings) :
 	_Location.NewScenery(Vec2u(0, 0), "ArmorDisplay2.ART");
 
 	_LocationSaver.Save(&_LocationData, "TestLocation.xml");
+	*/
 }
 
 void Engine::ShowFps()
