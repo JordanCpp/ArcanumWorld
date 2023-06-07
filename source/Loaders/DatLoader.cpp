@@ -1,8 +1,10 @@
+#include <Arcanum/Core/RuntimeError.hpp>
 #include <Arcanum/Loaders/DatLoader.hpp>
 #include <zlib.h>
 
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;
+using namespace Arcanum::Core;
 
 DatLoader::DatLoader(DatList* archiveList) :
 	_ArchiveList(archiveList),
@@ -55,7 +57,12 @@ std::vector<uint8_t>& DatLoader::GetData(const std::string& path)
 
 MemoryReader& DatLoader::GetFile(const std::string& path)
 {
-	_MemoryReader.Reset(GetData(path));
+	std::vector<uint8_t> result = GetData(path);
+
+	if (result.empty())
+		throw RuntimeError("Cannot open file: " + path);
+
+	_MemoryReader.Reset(result);
 
 	return _MemoryReader;
 }
