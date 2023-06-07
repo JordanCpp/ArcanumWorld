@@ -16,6 +16,7 @@ link_directories (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
 add_subdirectory(dependencies/zlib)
 include_directories(dependencies/zlib)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/zlib)
+link_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/zlib)
 
 include_directories("include")
 
