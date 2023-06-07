@@ -14,14 +14,15 @@ using namespace Arcanum::Objects;
 
 Engine::Engine(Settings* settings) :
 	_Settings(settings),
-	_OriginalAllocator(Allocator::Mb * 4),
 	_PathManager(settings->Path()),
+	_FileManager(&_PathManager),
+	_OriginalAllocator(Allocator::Mb * 4),
 	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
 	_ImageLoader(&_ImageAllocator),
 	_Window(Vec2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
 	_Render(&_RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
-	_SpriteManager(&_RenderContext, &_ArtLoader, &_PathManager),
+	_SpriteManager(&_RenderContext, &_FileManager, &_ArtLoader, &_PathManager),
 	_SecReader(&_ByteReader),
 	_LocationPainter(&_Render, &_LocationData),
 	_WidgetManager(&_Render),
@@ -33,28 +34,7 @@ Engine::Engine(Settings* settings) :
 	_LocationSaver(&_XmlWritter),
 	_LocationLoader(&_XmlReader, &_LocationCreator)
 {
-	_LocationLoader.Reset("Empty.xml");
-	/*
-	_SecReader.Reset(_PathManager.Path("maps/Tarant Sewers-01/", "0.sec"));
-
-	size_t sz = 10;
-
-	_LocationData.Reset(Vec2u(sz, sz));
-	
-	for (size_t x = 0; x < _LocationData.Size().x; x++)
-	{
-		for (size_t y = 0; y < _LocationData.Size().y; y++)
-		{
-			_Location.NewTile(Vec2u(x, y), "grsbse0c.ART");
-		}
-	}
-
-	_Location.NewScenery(Vec2u(3, 7), "savanna_tree02.ART");
-	_Location.NewScenery(Vec2u(6, 5), "engine.ART");
-	_Location.NewScenery(Vec2u(0, 0), "ArmorDisplay2.ART");
-
-	_LocationSaver.Save(&_LocationData, "TestLocation.xml");
-	*/
+	_LocationLoader.Reset("data\\maps\\Test.xml");
 }
 
 void Engine::ShowFps()

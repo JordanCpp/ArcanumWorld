@@ -8,6 +8,7 @@
 #include <cstring>
 
 using namespace Arcanum::Formats;
+using namespace Arcanum::Readers;
 
 bool ArtFrame::Inc()
 {
@@ -48,9 +49,9 @@ bool ArtFrame::EOD()
 	return true;
 }
 
-void ArtFrame::LoadHeader(std::ifstream& source)
+void ArtFrame::LoadHeader(MemoryReader& source)
 {
-	source.read(reinterpret_cast<char*>(&header), sizeof(header));
+	source.Read(reinterpret_cast<char*>(&header), sizeof(header));
 }
 
 void ArtFrame::SaveHeader(std::ofstream& dest)
@@ -58,10 +59,10 @@ void ArtFrame::SaveHeader(std::ofstream& dest)
 	dest.write(reinterpret_cast<char*>(&header), sizeof(header));
 }
 
-void ArtFrame::Load(std::ifstream& source)
+void ArtFrame::Load(MemoryReader& source)
 {
 	data.resize(header.size);
-	source.read(&data[0], header.size);
+	source.Read(&data[0], header.size);
 }
 
 uint8_t ArtFrame::GetValue(int x, int y)
@@ -126,17 +127,11 @@ void ArtFrame::Decode()
 	}
 }
 
-void ArtFile::LoadArt(const std::string &fname)
+void ArtFile::LoadArt(Readers::MemoryReader& source)
 {
 	frame_data.clear();
 
-	std::ifstream source;
-	source.open(fname, std::ios_base::binary);
-
-	if (!source)
-		throw MissingFile{ fname };
-
-	source.read(reinterpret_cast<char*>(&header), sizeof(header));
+	source.Read(reinterpret_cast<char*>(&header), sizeof(header));
 
 	animated = ((header.h0[0] & 0x1) == 0);
 
@@ -156,7 +151,7 @@ void ArtFile::LoadArt(const std::string &fname)
 	for (int i = 0; i < palettes; i++)
 	{
 		palette_data.push_back(ArtTable());
-		source.read(reinterpret_cast<char*>(&palette_data.back()), sizeof(ArtTable));
+		source.Read(reinterpret_cast<char*>(&palette_data.back()), sizeof(ArtTable));
 	}
 
 	for (int i = 0; i < frames; i++)
@@ -171,7 +166,7 @@ void ArtFile::LoadArt(const std::string &fname)
 		af.Decode();
 	}
 
-	source.close();
+	source.Close();
 }
 
 ArtColor::ArtColor() :

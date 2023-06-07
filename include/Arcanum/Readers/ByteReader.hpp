@@ -17,8 +17,11 @@ namespace Arcanum
                 BigEndian,
                 LittleEndian
             };
-            void Reset(const std::string& path, size_t type);
+
+            bool Reset(const std::string& path, size_t type);
+            void Close();
             ~ByteReader();
+            size_t Bytes();
             bool Eof();
             uint8_t u8();
             uint16_t u16();
@@ -29,6 +32,7 @@ namespace Arcanum
             void Read(void* buffer, size_t bytes);
         private:
             size_t _Type;
+            size_t _Bytes;
             std::fstream _File;
         };
     }

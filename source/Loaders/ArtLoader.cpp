@@ -4,9 +4,9 @@ using namespace Arcanum::Loaders;
 using namespace Arcanum::Formats;
 using namespace LDL::Math;
 
-void ArtLoader::Load(const std::string& path)
+void ArtLoader::Load(Readers::MemoryReader& memoryReader)
 {
-	_File.LoadArt(path);
+	_File.LoadArt(memoryReader);
 }
 
 const Vec2u& ArtLoader::Size()

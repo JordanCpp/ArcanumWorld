@@ -8,9 +8,25 @@ using namespace Arcanum::Writters;
 class Genertor
 {
 public:
-	void Reset(const std::string& path)
+	void Reset(const std::string& path, const Vec2u& size)
 	{
 		_Writter.Reset(path);
+
+		FillTiles(size);
+	}
+
+	void FillTiles(const Vec2u& size)
+	{
+		_Writter.TagBegin("Tiles");
+
+		for (size_t i = 0; i < size.x * size.y; i++)
+		{
+			_Writter.TagBegin("Tile");
+			_Writter.Node("Body", "ILLbse0a.ART");
+			_Writter.TagEnd("Tile");
+		}
+
+		_Writter.TagEnd("Tiles");
 	}
 private:
 	XmlWritter _Writter;

@@ -3,6 +3,7 @@
 
 #include <Arcanum/Formats/Art.hpp>
 #include <LDL/Math/Vec2.hpp>
+#include <Arcanum/Readers/MemoryReader.hpp>
 
 namespace Arcanum
 {
@@ -11,7 +12,7 @@ namespace Arcanum
 		class ArtLoader
 		{
 		public:
-			void Load(const std::string& path);
+			void Load(Readers::MemoryReader& memoryReader);
 			const LDL::Math::Vec2u& Size();
 			const LDL::Math::Vec2u& Offset();
 			const LDL::Math::Vec2u& Delta();

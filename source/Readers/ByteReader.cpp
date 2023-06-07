@@ -1,8 +1,6 @@
 #include <Arcanum/Readers/ByteReader.hpp>
-#include <Arcanum/Core/RuntimeError.hpp>
 
 using namespace Arcanum::Readers;
-using namespace Arcanum::Core;
 
 #define HTONS(n) (((((uint16_t)(n) & 0xFF)) << 8) | (((uint16_t)(n) & 0xFF00) >> 8))
 
@@ -11,22 +9,42 @@ using namespace Arcanum::Core;
                   ((((uint32_t)(n) & 0xFF0000)) >> 8) | \
                   ((((uint32_t)(n) & 0xFF000000)) >> 24)) 
 
-void ByteReader::Reset(const std::string & path, size_t type)
+bool ByteReader::Reset(const std::string & path, size_t type)
 {
     if (_File.is_open())
         _File.close();
 
   _File.open(path.c_str(), std::ios::in | std::ios::binary);
 
-  if (!_File.is_open())
-      throw RuntimeError("Can't open file: " + path);
-
   _Type = type;
+
+  if (_File.is_open())
+  {
+      _File.seekg(0, std::ios::end);
+
+      std::streampos length(_File.tellg());
+
+      _File.seekg(0, std::ios::beg);
+
+      _Bytes = (size_t)length;
+  }
+
+  return _File.is_open();
+}
+
+void ByteReader::Close()
+{
+    _File.close();
 }
 
 ByteReader::~ByteReader()
 {
-  _File.close();
+    Close();
+}
+
+size_t ByteReader::Bytes()
+{
+    return _Bytes;
 }
 
 void ByteReader::Pos(size_t value)

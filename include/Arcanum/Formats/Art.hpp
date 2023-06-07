@@ -8,6 +8,8 @@
 #include <vector>
 #include <fstream>
 
+#include <Arcanum/Readers/MemoryReader.hpp>
+
 namespace Arcanum
 {
 	namespace Formats
@@ -77,10 +79,10 @@ namespace Arcanum
 			size_t Index(int x, int y);
 
 			ArtFrameHeader& GetHeader() { return header; }
-			void LoadHeader(std::ifstream& source);
+			void LoadHeader(Readers::MemoryReader& source);
 			void SaveHeader(std::ofstream& dest);
 
-			void Load(std::ifstream& source);
+			void Load(Readers::MemoryReader& source);
 
 			uint8_t GetValue(int x, int y);
 			void SetValue(int x, int y, uint8_t ch);
@@ -100,7 +102,7 @@ namespace Arcanum
 			bool animated = { 0 };
 
 			void Reset();
-			void LoadArt(const std::string& fname);
+			void LoadArt(Readers::MemoryReader& source);
 		};
 	}
 }

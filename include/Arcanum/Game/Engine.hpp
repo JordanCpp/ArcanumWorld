@@ -25,6 +25,7 @@
 #include <Arcanum/Savers/LocationSaver.hpp>
 #include <Arcanum/Objects/LocationCreator.hpp>
 #include <Arcanum/Loaders/LocationLoader.hpp>
+#include <Arcanum/Managers/FileManager.hpp>
 
 namespace Arcanum
 {
@@ -41,6 +42,7 @@ namespace Arcanum
 		private:
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
+			Managers::FileManager _FileManager;
 			LDL::Allocators::FixedLinear _OriginalAllocator;
 			Arcanum::Allocators::ObjectAllocator _ObjectAllocator;
 			Managers::PathManager _PathManager;

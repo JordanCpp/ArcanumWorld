@@ -12,7 +12,7 @@ int main()
 	{
 		Settings settings;
 
-		settings.Path("data/");
+		settings.Path("");
 		settings.Title("Arcanum World");
 		settings.Size(Vec2u(1024, 768));
 		settings.Fps(60);

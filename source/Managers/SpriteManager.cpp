@@ -5,8 +5,9 @@ using namespace Arcanum::Managers;
 using namespace Arcanum::Graphics;
 using namespace Arcanum::Loaders;
 
-SpriteManager::SpriteManager(RenderContext* renderContext, ArtLoader* artLoader, PathManager* pathManager) :
+SpriteManager::SpriteManager(RenderContext* renderContext, Managers::FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager) :
     _RenderContext(renderContext),
+    _FileManager(fileManager),
     _ArtLoader(artLoader),
     _PathManager(pathManager)
 {
@@ -30,7 +31,7 @@ Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file
 
     if (i == _Sprites.end())
     {
-        _ArtLoader->Load(path);
+        _ArtLoader->Load(_FileManager->GetFile(path));
 
         result = new Sprite;
 
@@ -55,15 +56,15 @@ Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file
 
 Sprite* SpriteManager::GetScenery(const std::string& fileName)
 {
-    return GetSprite("art/scenery/", fileName);
+    return GetSprite("art\\scenery\\", fileName);
 }
 
 Sprite* SpriteManager::GetTile(const std::string& fileName)
 {
-    return GetSprite("art/tile/", fileName);
+    return GetSprite("art\\tile\\", fileName);
 }
 
 Sprite* SpriteManager::GetInterface(const std::string& fileName)
 {
-    return GetSprite("art/interface/", fileName);
+    return GetSprite("art\\interface\\", fileName);
 }
