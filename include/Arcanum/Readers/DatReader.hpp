@@ -1,11 +1,11 @@
 #ifndef Arcanum_Readers_DatReader_hpp
 #define Arcanum_Readers_DatReader_hpp
 
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <Arcanum/Core/PathNormalizer.hpp>
 
 namespace Arcanum
 {
@@ -43,6 +43,7 @@ namespace Arcanum
         public:
             bool Reset(const std::string& dir, const std::string& file, DatList& archiveList);
         private:
+            Core::PathNormalizer _PathNormalizer;
             std::string _FullPath;
             std::ifstream _File;
         };

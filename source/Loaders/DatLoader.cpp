@@ -10,6 +10,8 @@ DatLoader::DatLoader(DatList* archiveList) :
 	_ArchiveList(archiveList),
 	_MemoryReader(&_ByteReader)
 {
+	_Result.reserve(DatLoader::Bytes);
+	_Buffer.reserve(DatLoader::Bytes);
 }
 
 std::vector<uint8_t>& DatLoader::GetData(const std::string& path)
@@ -43,7 +45,6 @@ std::vector<uint8_t>& DatLoader::GetData(const std::string& path)
 				_Buffer.resize(p->PackedSize);
 
 				_File.read((char*)&_Buffer[0], p->PackedSize);
-
 
 				z_err = uncompress(_Result.data(), (uLongf*)&p->RealSize, _Buffer.data(), p->PackedSize);
 			}

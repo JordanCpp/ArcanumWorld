@@ -20,13 +20,19 @@ namespace Arcanum
 			size_t Index(size_t x, size_t y);
 			size_t Index(const LDL::Math::Vec2u& pos);
 			const LDL::Math::Vec2u& Size();
+
 			std::vector<Tile>& TileObjects();
+
 			std::vector<Scenery*>& SceneryObjects();
 			std::vector<Scenery*>& SceneryTiles();
+
 			std::vector<Critter*>& CritterObjects();
 			std::vector<Critter*>& CritterTiles();
+
 			std::vector<Wall*>& WallObjects();
 			std::vector<Wall*>& WallTiles();
+
+			std::vector<CritterScript*>& CritterScripts();
 
 			Scenery* GetScenery(const LDL::Math::Vec2u& pos);
 			Tile* GetTile(const LDL::Math::Vec2u& pos);
@@ -46,6 +52,8 @@ namespace Arcanum
 
 			std::vector<Wall*>   _WallObjects;
 			std::vector<Wall*>   _WallTiles;
+
+			std::vector<CritterScript*> _CritterScripts;
 		};
 	}
 }

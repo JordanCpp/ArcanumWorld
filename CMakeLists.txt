@@ -56,6 +56,7 @@ add_library(ArcanumLib STATIC
 "source/Savers/LocationSaver.cpp"
 
 "source/Core/RuntimeError.cpp"
+"source/Core/PathNormalizer.cpp"
 
 "source/Objects/Tile.cpp"
 "source/Objects/Critter.cpp"

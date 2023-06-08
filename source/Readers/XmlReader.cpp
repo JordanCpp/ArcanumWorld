@@ -16,7 +16,7 @@ XmlReader::~XmlReader()
     CloseFile();
 }
 
-void XmlReader::Reset(const std::string & name, size_t mode_open)
+bool XmlReader::Reset(const std::string & name, size_t mode_open)
 {
     mode = mode_open;
     line = 1;
@@ -29,9 +29,9 @@ void XmlReader::Reset(const std::string & name, size_t mode_open)
     {
         input.open(name.c_str());
 
-        if (input.is_open() != true)
+        if (!input.is_open())
         {
-            Error("Not found file: " + name);
+            return false;
         }
     }
     else if (mode == XmlReader::FromString)
@@ -41,8 +41,10 @@ void XmlReader::Reset(const std::string & name, size_t mode_open)
     }
     else
     {
-        Error("Mode not initialized");
+        return false;
     }
+
+    return true;
 }
 
 void XmlReader::CloseFile()

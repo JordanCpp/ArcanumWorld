@@ -56,15 +56,15 @@ Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file
 
 Sprite* SpriteManager::GetScenery(const std::string& fileName)
 {
-    return GetSprite("art\\scenery\\", fileName);
+    return GetSprite("art/scenery/", fileName);
 }
 
 Sprite* SpriteManager::GetTile(const std::string& fileName)
 {
-    return GetSprite("art\\tile\\", fileName);
+    return GetSprite("art/tile/", fileName);
 }
 
 Sprite* SpriteManager::GetInterface(const std::string& fileName)
 {
-    return GetSprite("art\\interface\\", fileName);
+    return GetSprite("art/interface/", fileName);
 }

@@ -41,7 +41,6 @@ void LocationLoader::Reset(const std::string& path)
 
 	_XmlReader->NextClosing("Tiles");
 
-
 	_XmlReader->NextOpening("Sceneries");
 
 	for (size_t i = 0; i < _SceneryCount; i++)

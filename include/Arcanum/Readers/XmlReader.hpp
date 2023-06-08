@@ -28,7 +28,7 @@ namespace Arcanum
             XmlReader();
             XmlReader(const std::string& name, size_t mode_open = XmlReader::FromFile);
             ~XmlReader();
-            void Reset(const std::string& name, size_t mode_open = XmlReader::FromFile);
+            bool Reset(const std::string& name, size_t mode_open = XmlReader::FromFile);
             void CloseFile();
             const std::string& Name();
             const std::string& Value();

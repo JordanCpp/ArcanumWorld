@@ -1,5 +1,5 @@
 #include <Arcanum/Readers/DatReader.hpp>
-#include "zlib.h"
+#include <zlib.h>
 
 using namespace Arcanum::Readers;
 
@@ -32,12 +32,15 @@ bool DatReader::Reset(const std::string& dir, const std::string& file, DatList& 
 			DatItem item = { 0 };
 
 			_File.read((char*)&item.NameSize, 0x04);
-			_File.read((char*)&item.Name, item.NameSize);
-			_File.read((char*)&item.Unknown1, 0x04);
-			_File.read((char*)&item.Type, 0x04);
-			_File.read((char*)&item.RealSize, 0x04);
+			_File.read((char*)&item.Name    , item.NameSize);
+
+			_PathNormalizer.Normalize(item.Name);
+
+			_File.read((char*)&item.Unknown1  , 0x04);
+			_File.read((char*)&item.Type      , 0x04);
+			_File.read((char*)&item.RealSize  , 0x04);
 			_File.read((char*)&item.PackedSize, 0x04);
-			_File.read((char*)&item.Offset, 0x04);
+			_File.read((char*)&item.Offset    , 0x04);
 			strcpy(item.Archive, file.c_str());
 
 			auto j = archiveList._List.find(item.Name);

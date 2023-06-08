@@ -13,6 +13,10 @@ namespace Arcanum
 		class DatLoader
 		{
 		public:
+			enum
+			{
+				Bytes = 1024 * 1024
+			};
 			DatLoader(Readers::DatList* archiveList);
 			std::vector<uint8_t>& GetData(const std::string& path);
 			Readers::MemoryReader& GetFile(const std::string& path);

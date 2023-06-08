@@ -23,7 +23,7 @@ int main()
 		}
 	}
 
-	LDL_TEST_EQUAL(list.GetItem("art\\tile\\grsbse0c.ART") != nullptr);
+	LDL_TEST_EQUAL(list.GetItem("art/tile/grsbse0c.ART") != nullptr);
 
 	return 0;
 }

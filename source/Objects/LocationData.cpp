@@ -101,6 +101,11 @@ std::vector<Wall*>& LocationData::WallTiles()
 	return _WallTiles;
 }
 
+std::vector<CritterScript*>& LocationData::CritterScripts()
+{
+	return _CritterScripts;
+}
+
 Scenery* LocationData::GetScenery(const Vec2u& pos)
 {
 	return _SceneryObjects.at(Index(pos.x, pos.y));

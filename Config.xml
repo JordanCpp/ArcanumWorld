@@ -1,0 +1,7 @@
+<Config>
+	<Video>
+		<Width>1024</Width>
+		<Heigth>768</Heigth>
+		<Fps>60</Fps>
+	</Video>
+</Config>
