@@ -18,7 +18,7 @@ FileManager::FileManager(Managers::PathManager* pathManager) :
 	{
 		while (directory.Next(fileInfo))
 		{
-			if (fileInfo.Name().find(".dat") > 0)
+			if (fileInfo.Name().find(".dat") != std::string::npos)
 			{
 				_ArchiveReader.Reset("", fileInfo.Name(), _ArchiveList);
 			}

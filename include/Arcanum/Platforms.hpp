@@ -2,7 +2,7 @@
 #define Arcanum_Platforms_hpp
 
 #if defined(_WIN32)
-    #define CURRENT_DIRECTORY_PATH "\\*.*"
+    #define CURRENT_DIRECTORY_PATH "*.*"
 #elif defined(__unix__)
     #define CURRENT_DIRECTORY_PATH "./"
 #endif
