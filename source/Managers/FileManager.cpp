@@ -1,5 +1,6 @@
 #include <Arcanum/Managers/FileManager.hpp>
 #include <LDL/Core/Directory.hpp>
+#include <Arcanum/Platforms.hpp>
 
 using namespace Arcanum::Managers;
 using namespace Arcanum::Readers;
@@ -13,11 +14,14 @@ FileManager::FileManager(Managers::PathManager* pathManager) :
 	Directory directory;
 	FileInfo fileInfo;
 
-	if (directory.Open("*.dat"))
+	if (directory.Open(CURRENT_DIRECTORY_PATH))
 	{
 		while (directory.Next(fileInfo))
 		{
-			_ArchiveReader.Reset("", fileInfo.Name(), _ArchiveList);
+			if (fileInfo.Name().find(".dat") > 0)
+			{
+				_ArchiveReader.Reset("", fileInfo.Name(), _ArchiveList);
+			}
 		}
 	}
 }

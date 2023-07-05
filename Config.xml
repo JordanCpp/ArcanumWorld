@@ -3,5 +3,6 @@
 		<Width>1024</Width>
 		<Heigth>768</Heigth>
 		<Fps>60</Fps>
+		<Title>Arcanum World Project</Title>
 	</Video>
 </Config>

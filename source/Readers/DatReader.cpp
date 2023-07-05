@@ -1,4 +1,5 @@
 #include <Arcanum/Readers/DatReader.hpp>
+#include <string.h>
 #include <zlib.h>
 
 using namespace Arcanum::Readers;

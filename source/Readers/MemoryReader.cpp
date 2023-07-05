@@ -1,4 +1,5 @@
 #include <Arcanum/Readers/MemoryReader.hpp>
+#include <string.h>
 
 using namespace Arcanum::Readers;
 

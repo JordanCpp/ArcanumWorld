@@ -42,6 +42,7 @@ namespace Arcanum
 		private:
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
+			LDL::Graphics::RenderContext _RenderContext;
 			Managers::FileManager _FileManager;
 			LDL::Allocators::FixedLinear _OriginalAllocator;
 			Arcanum::Allocators::ObjectAllocator _ObjectAllocator;
@@ -50,7 +51,6 @@ namespace Arcanum
 			LDL::Allocators::FixedLinear _ImageAllocator;
 			LDL::Loaders::ImageLoader _ImageLoader;
 			LDL::Graphics::Window _Window;
-			LDL::Graphics::RenderContext _RenderContext;
 			LDL::Graphics::Render _Render;
 			LDL::Time::FpsCounter _FpsCounter;
 			LDL::Core::NumberToString _Convert;

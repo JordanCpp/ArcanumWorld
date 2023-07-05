@@ -19,7 +19,7 @@ Engine::Engine(Settings* settings) :
 	_OriginalAllocator(Allocator::Mb * 4),
 	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
 	_ImageLoader(&_ImageAllocator),
-	_Window(Vec2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
+	_Window(&_RenderContext, Vec2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
 	_Render(&_RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
 	_SpriteManager(&_RenderContext, &_FileManager, &_ArtLoader, &_PathManager),
@@ -34,7 +34,7 @@ Engine::Engine(Settings* settings) :
 	_LocationSaver(&_XmlWritter),
 	_LocationLoader(&_XmlReader, &_LocationCreator)
 {
-	_LocationLoader.Reset("data\\maps\\Test.xml");
+	_LocationLoader.Reset("data/maps/Test.xml");
 }
 
 void Engine::ShowFps()
