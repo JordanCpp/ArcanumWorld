@@ -3,6 +3,14 @@
 A project to create an Arcanum game engine.
 The project uses the LDL library.
 
+# Install
+git clone https://github.com/JordanCpp/ArcanumWorld.git
+run dependencies_download
+cmake CMakeLists.txt
+make
+Copy the game's dat files to the ArcanumWorld directory
+run ArcanumWorld
+
 # A forum for communication.
 https://forums.arcanumclub.org/index.php?showtopic=12408
 
