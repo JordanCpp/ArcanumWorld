@@ -26,6 +26,8 @@
 #include <Arcanum/Objects/LocationCreator.hpp>
 #include <Arcanum/Loaders/LocationLoader.hpp>
 #include <Arcanum/Managers/FileManager.hpp>
+#include <Arcanum/Text/Rasterizer.hpp>
+#include <Arcanum/Managers/FontManager.hpp>
 
 namespace Arcanum
 {
@@ -40,10 +42,12 @@ namespace Arcanum
 			void Update();
 			void Run();
 		private:
+			Text::Rasterizer _Rasterizer;
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
 			LDL::Graphics::RenderContext _RenderContext;
 			Managers::FileManager _FileManager;
+			Managers::FontManager _FontManager;
 			LDL::Allocators::FixedLinear _OriginalAllocator;
 			Arcanum::Allocators::ObjectAllocator _ObjectAllocator;
 			Managers::PathManager _PathManager;
@@ -70,6 +74,8 @@ namespace Arcanum
 			Writters::XmlWritter _XmlWritter;
 			Savers::LocationSaver _LocationSaver;
 			Loaders::LocationLoader _LocationLoader;
+			LDL::Graphics::Surface* _Surface;
+			LDL::Graphics::Texture* _Texture;
 		};
 	}
 }

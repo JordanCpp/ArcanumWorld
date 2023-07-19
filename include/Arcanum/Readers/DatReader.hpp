@@ -21,6 +21,9 @@ namespace Arcanum
                 MaxPath      = 128,
                 MaxName      = 64
             };
+
+            DatItem();
+
             int  NameSize;
             char Name[MaxPath];
             int  Unknown1;

@@ -5,32 +5,6 @@
 using namespace LDL::Math;
 using namespace Arcanum::Writters;
 
-class Genertor
-{
-public:
-	void Reset(const std::string& path, const Vec2u& size)
-	{
-		_Writter.Reset(path);
-
-		FillTiles(size);
-	}
-
-	void FillTiles(const Vec2u& size)
-	{
-		_Writter.TagBegin("Tiles");
-
-		for (size_t i = 0; i < size.x * size.y; i++)
-		{
-			_Writter.TagBegin("Tile");
-			_Writter.Node("Body", "ILLbse0a.ART");
-			_Writter.TagEnd("Tile");
-		}
-
-		_Writter.TagEnd("Tiles");
-	}
-private:
-	XmlWritter _Writter;
-};
 
 void NewScenery(XmlWritter& writter, const Vec2u& pos, const std::string& path)
 {
@@ -45,9 +19,9 @@ int main()
 {
 	XmlWritter writter;
 
-	writter.Reset("Empty.xml");
+	writter.Reset("data/maps/Test.xml");
 
-	LDL::Math::Vec2u size(10, 10);
+	LDL::Math::Vec2u size(15, 15);
 
 	writter.TagBegin("Info");
 	writter.Node("Width", size.x);

@@ -21,11 +21,11 @@ namespace Arcanum
 			std::vector<uint8_t>& GetData(const std::string& path);
 			Readers::MemoryReader& GetFile(const std::string& path);
 		private:
-			std::ifstream _File;
-			std::vector<uint8_t> _Result;
-			std::vector<uint8_t> _Buffer;
-			Readers::DatList* _ArchiveList;
-			Readers::ByteReader _ByteReader;
+			std::ifstream         _File;
+			std::vector<uint8_t>  _Result;
+			std::vector<uint8_t>  _Buffer;
+			Readers::DatList*     _ArchiveList;
+			Readers::ByteReader   _ByteReader;
 			Readers::MemoryReader _MemoryReader;
 		};
 	}

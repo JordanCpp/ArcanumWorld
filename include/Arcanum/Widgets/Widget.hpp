@@ -4,7 +4,6 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Rect.hpp>
 #include <LDL/Math/Vec2.hpp>
-#include <functional>
 
 namespace Arcanum
 {
@@ -19,11 +18,9 @@ namespace Arcanum
             const LDL::Math::Vec2u Size();
             LDL::Graphics::Render* GetRender();
             virtual void Draw() = 0;
-            std::function<void(LDL::Math::Vec2u pos)> Click;
-            std::function<void(size_t key)> Keyboard;
         private:
             LDL::Graphics::Render* _Render;
-            LDL::Graphics::Rectu  _Area;
+            LDL::Graphics::Rectu   _Area;
         };
     }
 }
