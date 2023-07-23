@@ -1,7 +1,6 @@
 #include <Arcanum/Game/Engine.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
-#include <Arcanum/Text/GlyphRender.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -12,14 +11,12 @@ using namespace LDL::Events;
 using namespace LDL::Time;
 using namespace Arcanum::Game;
 using namespace Arcanum::Objects;
-using namespace Arcanum::Text;
 
 Engine::Engine(Settings* settings) :
 	_Settings(settings),
 	_RenderContext(settings->Render()),
 	_PathManager(settings->Path()),
 	_FileManager(&_PathManager),
-	_FontManager(&_FileManager, &_Rasterizer),
 	_OriginalAllocator(Allocator::Mb * 4),
 	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
 	_ImageLoader(&_ImageAllocator),
@@ -36,21 +33,9 @@ Engine::Engine(Settings* settings) :
 	_LocationCreator(&_LocationData, &_ObjectManager),
 	_Location(&_LocationData, &_LocationCreator, &_LocationPainter),
 	_LocationSaver(&_XmlWritter),
-	_LocationLoader(&_XmlReader, &_LocationCreator),
-	_Surface(nullptr)
+	_LocationLoader(&_XmlReader, &_LocationCreator)
 {
 	_LocationLoader.Reset("data/maps/Test.xml");
-
-	GlyphRender glyphRender;
-
-	Font* font = _FontManager.GetFont("UbuntuMono-Regular.ttf", 256);
-
-	if (glyphRender.Render(font, 'A'))
-	{
-		_Surface = glyphRender.Result();
-
-		_Texture = new Texture(&_RenderContext, _Surface->Size(), _Surface->Pixels(), _Surface->BytesPerPixel());
-	}
 }
 
 void Engine::ShowFps()
@@ -95,10 +80,7 @@ void Engine::Run()
 
 		_Location.Draw(_Camera.Pos());
 
-		//_GameMenu.Draw();
-
-		if (_Texture != nullptr)
-			_Render.Draw(_Texture, LDL::Math::Vec2u(50, 50));
+		_GameMenu.Draw();
 
 		_Render.End();
 
